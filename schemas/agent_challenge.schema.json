@@ -1,0 +1,255 @@
+{
+  "$defs": {
+    "AgentContinuity": {
+      "additionalProperties": false,
+      "description": "Deterministic link from one role's current reading to its prior cycle.\n\nThe Council runtime computes this record from sealed proxy states and\ncommitted role outputs. Providers cannot write it, and it never feeds the\nsensing values or confidence chain.",
+      "properties": {
+        "changed_signals": {
+          "items": {
+            "enum": [
+              "motion",
+              "occupancy",
+              "depth",
+              "quality"
+            ],
+            "type": "string"
+          },
+          "title": "Changed Signals",
+          "type": "array"
+        },
+        "previous_cycle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Cycle Id"
+        },
+        "previous_evidence_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Evidence Hash"
+        },
+        "previous_record_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Record Id"
+        },
+        "relation": {
+          "enum": [
+            "initial",
+            "steady",
+            "intensified",
+            "eased",
+            "shifted",
+            "quality_changed",
+            "recovered",
+            "unknown"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-continuity.v1",
+          "default": "agent-continuity.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation",
+        "summary"
+      ],
+      "title": "AgentContinuity",
+      "type": "object"
+    },
+    "SkepticAssessment": {
+      "additionalProperties": false,
+      "description": "Explicit evidence decision and one bounded next validation.",
+      "properties": {
+        "evidence_label": {
+          "enum": [
+            "证据充分",
+            "证据有限",
+            "证据不足"
+          ],
+          "title": "Evidence Label",
+          "type": "string"
+        },
+        "evidence_status": {
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient"
+          ],
+          "title": "Evidence Status",
+          "type": "string"
+        },
+        "next_validation": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Next Validation",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "skeptic-assessment.v1",
+          "default": "skeptic-assessment.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "withhold_judgment": {
+          "title": "Withhold Judgment",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "evidence_status",
+        "evidence_label",
+        "withhold_judgment",
+        "rationale",
+        "next_validation"
+      ],
+      "title": "SkepticAssessment",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/agent_challenge.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assessment": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SkepticAssessment"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "category": {
+      "enum": [
+        "confound",
+        "missing_evidence",
+        "calibration_mismatch",
+        "causal_overreach",
+        "contradiction",
+        "stale_evidence"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "challenge_id": {
+      "minLength": 1,
+      "title": "Challenge Id",
+      "type": "string"
+    },
+    "challenger_agent_id": {
+      "minLength": 1,
+      "title": "Challenger Agent Id",
+      "type": "string"
+    },
+    "continuity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AgentContinuity"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "proposed_severity": {
+      "enum": [
+        "info",
+        "material",
+        "blocking"
+      ],
+      "title": "Proposed Severity",
+      "type": "string"
+    },
+    "resolution_test": {
+      "minLength": 1,
+      "title": "Resolution Test",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "agent-challenge.v1",
+      "default": "agent-challenge.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "resolved",
+        "accepted",
+        "rejected_by_policy"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "target_claim_id": {
+      "minLength": 1,
+      "title": "Target Claim Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id",
+    "target_claim_id",
+    "challenger_agent_id",
+    "category",
+    "proposed_severity",
+    "statement",
+    "resolution_test",
+    "status"
+  ],
+  "title": "AgentChallenge",
+  "type": "object"
+}

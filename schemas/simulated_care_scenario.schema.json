@@ -1,0 +1,1194 @@
+{
+  "$defs": {
+    "CareMomentEvidenceCore": {
+      "additionalProperties": false,
+      "description": "Canonical evidence-only content hashed for one simulated care moment.",
+      "properties": {
+        "event_id": {
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "routine_check",
+            "bathroom_duration_exceeded",
+            "suspected_fall_drill",
+            "pet_activity_external_label"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "external_observations": {
+          "items": {
+            "$ref": "#/$defs/SimulatedExternalObservation"
+          },
+          "minItems": 1,
+          "title": "External Observations",
+          "type": "array"
+        },
+        "input_sources": {
+          "items": {
+            "enum": [
+              "simulated_wifi_proxy",
+              "simulated_external_zone_presence",
+              "simulated_external_multisensor_label",
+              "simulated_manual_fall_drill_label",
+              "simulated_care_rule",
+              "simulated_clock"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Input Sources",
+          "type": "array"
+        },
+        "observed_duration_min": {
+          "minimum": 0,
+          "title": "Observed Duration Min",
+          "type": "number"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "proxy_triplet": {
+          "$ref": "#/$defs/SignalTriplet"
+        },
+        "schema_version": {
+          "const": "care-evidence-core.v2",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "threshold_comparison": {
+          "enum": [
+            "within",
+            "exceeded"
+          ],
+          "title": "Threshold Comparison",
+          "type": "string"
+        },
+        "threshold_min": {
+          "exclusiveMinimum": 0,
+          "title": "Threshold Min",
+          "type": "number"
+        },
+        "timeline_entry_id": {
+          "minLength": 1,
+          "title": "Timeline Entry Id",
+          "type": "string"
+        },
+        "zone_id": {
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "timeline_entry_id",
+        "event_type",
+        "occurred_at",
+        "zone_id",
+        "observed_duration_min",
+        "threshold_min",
+        "threshold_comparison",
+        "input_sources",
+        "external_observations",
+        "proxy_triplet",
+        "sensor_confidence_cap"
+      ],
+      "title": "CareMomentEvidenceCore",
+      "type": "object"
+    },
+    "CareMomentFacts": {
+      "additionalProperties": false,
+      "description": "Plain-language, inspectable inputs behind one simulated conclusion.",
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "input_sources": {
+          "items": {
+            "enum": [
+              "simulated_wifi_proxy",
+              "simulated_external_zone_presence",
+              "simulated_external_multisensor_label",
+              "simulated_manual_fall_drill_label",
+              "simulated_care_rule",
+              "simulated_clock"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Input Sources",
+          "type": "array"
+        },
+        "observed_duration_min": {
+          "minimum": 0,
+          "title": "Observed Duration Min",
+          "type": "number"
+        },
+        "plain_facts": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 4,
+          "title": "Plain Facts",
+          "type": "array"
+        },
+        "threshold_comparison": {
+          "enum": [
+            "within",
+            "exceeded"
+          ],
+          "title": "Threshold Comparison",
+          "type": "string"
+        },
+        "threshold_min": {
+          "exclusiveMinimum": 0,
+          "title": "Threshold Min",
+          "type": "number"
+        },
+        "unknowns": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Unknowns",
+          "type": "array"
+        },
+        "zone_id": {
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        },
+        "zone_label": {
+          "maxLength": 32,
+          "minLength": 1,
+          "title": "Zone Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone_id",
+        "zone_label",
+        "observed_duration_min",
+        "threshold_min",
+        "threshold_comparison",
+        "input_sources",
+        "plain_facts",
+        "unknowns",
+        "evidence_refs"
+      ],
+      "title": "CareMomentFacts",
+      "type": "object"
+    },
+    "DepthProbabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "far": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Far",
+          "type": "number"
+        },
+        "mid": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Mid",
+          "type": "number"
+        },
+        "near": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Near",
+          "type": "number"
+        },
+        "unknown": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Unknown",
+          "type": "number"
+        }
+      },
+      "required": [
+        "near",
+        "mid",
+        "far",
+        "unknown"
+      ],
+      "title": "DepthProbabilities",
+      "type": "object"
+    },
+    "DepthZone": {
+      "additionalProperties": false,
+      "description": "Propagation depth proxy — not metric distance.",
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "probabilities": {
+          "$ref": "#/$defs/DepthProbabilities"
+        },
+        "state": {
+          "enum": [
+            "near",
+            "mid",
+            "far",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "probabilities",
+        "state",
+        "confidence"
+      ],
+      "title": "DepthZone",
+      "type": "object"
+    },
+    "MotionSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "enum": [
+            "idle",
+            "micro_motion",
+            "moving",
+            "fast_change",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "value": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "value",
+        "state",
+        "confidence"
+      ],
+      "title": "MotionSignal",
+      "type": "object"
+    },
+    "OccupancyDensity": {
+      "additionalProperties": false,
+      "description": "Occupancy/obstruction density proxy — not a person count.",
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "probabilities": {
+          "$ref": "#/$defs/OccupancyProbabilities"
+        },
+        "state": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "probabilities",
+        "state",
+        "confidence"
+      ],
+      "title": "OccupancyDensity",
+      "type": "object"
+    },
+    "OccupancyProbabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "high": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "High",
+          "type": "number"
+        },
+        "low": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Low",
+          "type": "number"
+        },
+        "medium": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Medium",
+          "type": "number"
+        },
+        "unknown": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Unknown",
+          "type": "number"
+        }
+      },
+      "required": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "title": "OccupancyProbabilities",
+      "type": "object"
+    },
+    "SignalTriplet": {
+      "additionalProperties": false,
+      "description": "The three calibrated proxies plus the sensor confidence cap.",
+      "properties": {
+        "depth_zone": {
+          "$ref": "#/$defs/DepthZone"
+        },
+        "ended_at": {
+          "format": "date-time",
+          "title": "Ended At",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "motion": {
+          "$ref": "#/$defs/MotionSignal"
+        },
+        "occupancy_density": {
+          "$ref": "#/$defs/OccupancyDensity"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "session_id": {
+          "minLength": 1,
+          "title": "Session Id",
+          "type": "string"
+        },
+        "source_mode": {
+          "enum": [
+            "mock",
+            "replay",
+            "live"
+          ],
+          "title": "Source Mode",
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "degraded",
+            "insufficient_signal",
+            "uncalibrated"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "window_id": {
+          "minLength": 1,
+          "title": "Window Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "session_id",
+        "window_id",
+        "source_mode",
+        "started_at",
+        "ended_at",
+        "motion",
+        "occupancy_density",
+        "depth_zone",
+        "sensor_confidence_cap",
+        "evidence_refs",
+        "status"
+      ],
+      "title": "SignalTriplet",
+      "type": "object"
+    },
+    "SimulatedActivityEntry": {
+      "additionalProperties": false,
+      "description": "One scripted entry in a 24-hour fictional activity timeline.",
+      "properties": {
+        "activity_label": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Activity Label",
+          "type": "string"
+        },
+        "ended_at": {
+          "format": "date-time",
+          "title": "Ended At",
+          "type": "string"
+        },
+        "entry_id": {
+          "minLength": 1,
+          "title": "Entry Id",
+          "type": "string"
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Id"
+        },
+        "input_sources": {
+          "items": {
+            "enum": [
+              "simulated_wifi_proxy",
+              "simulated_external_zone_presence",
+              "simulated_external_multisensor_label",
+              "simulated_manual_fall_drill_label",
+              "simulated_care_rule",
+              "simulated_clock"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Input Sources",
+          "type": "array"
+        },
+        "note": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Note",
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "routine",
+            "attention",
+            "warning",
+            "drill",
+            "external_label"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "zone_id": {
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entry_id",
+        "started_at",
+        "ended_at",
+        "zone_id",
+        "activity_label",
+        "status",
+        "input_sources",
+        "note"
+      ],
+      "title": "SimulatedActivityEntry",
+      "type": "object"
+    },
+    "SimulatedCareMoment": {
+      "additionalProperties": false,
+      "description": "One deterministic scenario event and the Agent's bounded response.",
+      "properties": {
+        "conclusion": {
+          "maxLength": 360,
+          "minLength": 1,
+          "title": "Conclusion",
+          "type": "string"
+        },
+        "conclusion_confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Conclusion Confidence",
+          "type": "number"
+        },
+        "event_id": {
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "routine_check",
+            "bathroom_duration_exceeded",
+            "suspected_fall_drill",
+            "pet_activity_external_label"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "evidence_core": {
+          "$ref": "#/$defs/CareMomentEvidenceCore"
+        },
+        "evidence_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Evidence Hash",
+          "type": "string"
+        },
+        "facts": {
+          "$ref": "#/$defs/CareMomentFacts"
+        },
+        "headline": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Headline",
+          "type": "string"
+        },
+        "interpretation_status": {
+          "enum": [
+            "supported",
+            "unknown"
+          ],
+          "title": "Interpretation Status",
+          "type": "string"
+        },
+        "moment": {
+          "enum": [
+            "routine",
+            "bathroom_timeout",
+            "fall_drill",
+            "pet_night"
+          ],
+          "title": "Moment",
+          "type": "string"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "scenario_only": {
+          "const": true,
+          "title": "Scenario Only",
+          "type": "boolean"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "severity": {
+          "enum": [
+            "normal",
+            "attention",
+            "warning",
+            "urgent_drill"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/$defs/SimulatedCareSuggestion"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "title": "Suggestions",
+          "type": "array"
+        },
+        "timeline_entry_id": {
+          "minLength": 1,
+          "title": "Timeline Entry Id",
+          "type": "string"
+        },
+        "what_agent_does_not_know": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "What Agent Does Not Know",
+          "type": "array"
+        },
+        "what_agent_knows": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "What Agent Knows",
+          "type": "array"
+        }
+      },
+      "required": [
+        "moment",
+        "event_id",
+        "timeline_entry_id",
+        "event_type",
+        "severity",
+        "occurred_at",
+        "scenario_only",
+        "evidence_core",
+        "evidence_hash",
+        "facts",
+        "headline",
+        "conclusion",
+        "what_agent_knows",
+        "what_agent_does_not_know",
+        "interpretation_status",
+        "conclusion_confidence",
+        "sensor_confidence_cap",
+        "suggestions"
+      ],
+      "title": "SimulatedCareMoment",
+      "type": "object"
+    },
+    "SimulatedCareSuggestion": {
+      "additionalProperties": false,
+      "description": "A UI-only preview or withheld intent; never a device command receipt.",
+      "properties": {
+        "action_confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Action Confidence",
+          "type": "number"
+        },
+        "detail": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Detail",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "execution_status": {
+          "enum": [
+            "simulated_preview",
+            "withheld"
+          ],
+          "title": "Execution Status",
+          "type": "string"
+        },
+        "external_execution_allowed": {
+          "const": false,
+          "title": "External Execution Allowed",
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "ambient_light_preview",
+            "voice_checkin_preview",
+            "family_notification_draft",
+            "robot_inspection_preview"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "preview_copy": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Preview Copy",
+          "type": "string"
+        },
+        "reason_code": {
+          "enum": [
+            "scenario_preview_only",
+            "not_needed",
+            "human_confirmation_required",
+            "external_adapter_unavailable",
+            "external_label_resolved",
+            "degraded_evidence"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "requires_human_confirmation": {
+          "title": "Requires Human Confirmation",
+          "type": "boolean"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "suggestion_id": {
+          "minLength": 1,
+          "title": "Suggestion Id",
+          "type": "string"
+        },
+        "target": {
+          "enum": [
+            "ui_light_preview",
+            "speaker_script_preview",
+            "family_message_draft",
+            "robot_task_preview",
+            "none"
+          ],
+          "title": "Target",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "suggestion_id",
+        "kind",
+        "title",
+        "detail",
+        "preview_copy",
+        "execution_status",
+        "target",
+        "reason_code",
+        "requires_human_confirmation",
+        "external_execution_allowed",
+        "evidence_refs",
+        "action_confidence",
+        "sensor_confidence_cap"
+      ],
+      "title": "SimulatedCareSuggestion",
+      "type": "object"
+    },
+    "SimulatedExternalObservation": {
+      "additionalProperties": false,
+      "description": "One expiring, event-bound input supplied by the fictional scenario.\n\nThese observations are not raw CSI and not real integrations.  The source,\nevent, session, zone, validity interval and quality are explicit so stale\nor cross-zone labels cannot silently support a care conclusion.",
+      "properties": {
+        "event_id": {
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "observation_id": {
+          "minLength": 1,
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "quality_status": {
+          "enum": [
+            "ok",
+            "degraded"
+          ],
+          "title": "Quality Status",
+          "type": "string"
+        },
+        "session_id": {
+          "minLength": 1,
+          "title": "Session Id",
+          "type": "string"
+        },
+        "simulation_only": {
+          "const": true,
+          "title": "Simulation Only",
+          "type": "boolean"
+        },
+        "source": {
+          "enum": [
+            "simulated_wifi_proxy",
+            "simulated_external_zone_presence",
+            "simulated_external_multisensor_label",
+            "simulated_manual_fall_drill_label"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "valid_until": {
+          "format": "date-time",
+          "title": "Valid Until",
+          "type": "string"
+        },
+        "value": {
+          "enum": [
+            "activity_change",
+            "quiet",
+            "zone_present",
+            "zone_absent",
+            "pet",
+            "person",
+            "unknown_subject",
+            "fall_drill",
+            "cancelled_drill"
+          ],
+          "title": "Value",
+          "type": "string"
+        },
+        "zone_id": {
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "observation_id",
+        "simulation_only",
+        "source",
+        "observed_at",
+        "valid_until",
+        "zone_id",
+        "quality_status",
+        "session_id",
+        "event_id",
+        "value"
+      ],
+      "title": "SimulatedExternalObservation",
+      "type": "object"
+    },
+    "SimulatedHomeLayout": {
+      "additionalProperties": false,
+      "description": "Fictional home metadata supplied by the scenario, not sensed layout.",
+      "properties": {
+        "approximate_area_m2": {
+          "exclusiveMinimum": 0,
+          "title": "Approximate Area M2",
+          "type": "number"
+        },
+        "home_id": {
+          "minLength": 1,
+          "title": "Home Id",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 60,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "layout_source": {
+          "const": "simulated_fixture_not_sensor_inferred",
+          "title": "Layout Source",
+          "type": "string"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Notes",
+          "type": "array"
+        },
+        "zones": {
+          "items": {
+            "$ref": "#/$defs/SimulatedHomeZone"
+          },
+          "minItems": 1,
+          "title": "Zones",
+          "type": "array"
+        }
+      },
+      "required": [
+        "home_id",
+        "label",
+        "layout_source",
+        "approximate_area_m2",
+        "zones",
+        "notes"
+      ],
+      "title": "SimulatedHomeLayout",
+      "type": "object"
+    },
+    "SimulatedHomeZone": {
+      "additionalProperties": false,
+      "description": "One fictional floor-plan zone; never inferred from CSI.",
+      "properties": {
+        "adjacent_zone_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Adjacent Zone Ids",
+          "type": "array"
+        },
+        "approximate_area_m2": {
+          "exclusiveMinimum": 0,
+          "title": "Approximate Area M2",
+          "type": "number"
+        },
+        "label": {
+          "maxLength": 32,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "simulated_inputs": {
+          "items": {
+            "enum": [
+              "simulated_wifi_proxy",
+              "simulated_external_zone_presence",
+              "simulated_external_multisensor_label",
+              "simulated_manual_fall_drill_label",
+              "simulated_care_rule",
+              "simulated_clock"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Simulated Inputs",
+          "type": "array"
+        },
+        "zone_id": {
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone_id",
+        "label",
+        "approximate_area_m2",
+        "simulated_inputs"
+      ],
+      "title": "SimulatedHomeZone",
+      "type": "object"
+    },
+    "SimulatedResidentProfile": {
+      "additionalProperties": false,
+      "description": "Anonymous fictional resident data used only by the demo scenario.",
+      "properties": {
+        "age_band": {
+          "const": "75-79",
+          "title": "Age Band",
+          "type": "string"
+        },
+        "care_preferences": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Care Preferences",
+          "type": "array"
+        },
+        "contains_real_person_data": {
+          "const": false,
+          "title": "Contains Real Person Data",
+          "type": "boolean"
+        },
+        "display_name": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "household_context": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Household Context",
+          "type": "array"
+        },
+        "living_arrangement": {
+          "const": "lives_alone_simulation",
+          "title": "Living Arrangement",
+          "type": "string"
+        },
+        "mobility_context": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Mobility Context",
+          "type": "array"
+        },
+        "profile_id": {
+          "minLength": 1,
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "profile_origin": {
+          "const": "fictional_simulation",
+          "title": "Profile Origin",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile_id",
+        "display_name",
+        "profile_origin",
+        "age_band",
+        "living_arrangement",
+        "mobility_context",
+        "household_context",
+        "care_preferences",
+        "contains_real_person_data"
+      ],
+      "title": "SimulatedResidentProfile",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/simulated_care_scenario.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Full deterministic 24-hour care demo with one selected UI moment.",
+  "properties": {
+    "current_index": {
+      "maximum": 3,
+      "minimum": 0,
+      "title": "Current Index",
+      "type": "integer"
+    },
+    "day_ended_at": {
+      "format": "date-time",
+      "title": "Day Ended At",
+      "type": "string"
+    },
+    "day_started_at": {
+      "format": "date-time",
+      "title": "Day Started At",
+      "type": "string"
+    },
+    "device_execution_enabled": {
+      "const": false,
+      "title": "Device Execution Enabled",
+      "type": "boolean"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "home": {
+      "$ref": "#/$defs/SimulatedHomeLayout"
+    },
+    "moments": {
+      "items": {
+        "$ref": "#/$defs/SimulatedCareMoment"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "title": "Moments",
+      "type": "array"
+    },
+    "resident": {
+      "$ref": "#/$defs/SimulatedResidentProfile"
+    },
+    "scenario_id": {
+      "minLength": 1,
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "simulated-care-scenario.v2",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "selected_moment": {
+      "enum": [
+        "routine",
+        "bathroom_timeout",
+        "fall_drill",
+        "pet_night"
+      ],
+      "title": "Selected Moment",
+      "type": "string"
+    },
+    "simulation_only": {
+      "const": true,
+      "title": "Simulation Only",
+      "type": "boolean"
+    },
+    "source_mode": {
+      "const": "mock",
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "timeline": {
+      "items": {
+        "$ref": "#/$defs/SimulatedActivityEntry"
+      },
+      "minItems": 1,
+      "title": "Timeline",
+      "type": "array"
+    },
+    "truth_boundary": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Truth Boundary",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "simulation_only",
+    "source_mode",
+    "device_execution_enabled",
+    "resident",
+    "home",
+    "day_started_at",
+    "day_ended_at",
+    "timeline",
+    "moments",
+    "selected_moment",
+    "current_index",
+    "truth_boundary",
+    "generated_at"
+  ],
+  "title": "SimulatedCareScenario",
+  "type": "object"
+}

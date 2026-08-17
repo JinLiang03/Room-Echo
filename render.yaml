@@ -1,0 +1,37 @@
+services:
+  - type: web
+    # Render service slug; the product name shown in the app and submission is Room Echo.
+    name: room-echo
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      - key: SERVE_WEB
+        value: "1"
+      - key: PUBLIC_REPLAY
+        value: "1"
+      - key: APP_MODE
+        value: replay
+      - key: SCENARIO
+        value: demo_2min
+      - key: DEMO_AUTOSTART
+        value: "1"
+      - key: DEMO_LOOP
+        value: "1"
+      - key: AGENT_PROVIDER
+        value: mock
+      # Continuous Replay stays deterministic; the evaluator-facing invoke
+      # endpoint performs one real DeepSeek Council cycle and caches it per process.
+      - key: PUBLIC_REAL_PROVIDER_INVOKE
+        value: "1"
+      - key: REAL_AGENT_PROVIDER
+        value: deepseek
+      - key: REAL_COUNCIL_DEADLINE_S
+        value: "120"
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_BASE_URL
+        value: https://api.deepseek.com
+      - key: DEEPSEEK_COUNCIL_MODEL
+        value: deepseek-v4-flash

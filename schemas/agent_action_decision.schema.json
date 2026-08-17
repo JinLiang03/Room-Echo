@@ -1,0 +1,147 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/agent_action_decision.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One deterministic safe action projection for a Council result.\n\nThe contract deliberately has no ``executed`` state. Mock and Replay may\nexpose a clearly labelled UI-only preview; Live is withheld until a real,\nseparately validated actuator adapter exists.",
+  "properties": {
+    "action_type": {
+      "enum": [
+        "stay_silent",
+        "ambient_light_preview",
+        "wait_and_observe"
+      ],
+      "title": "Action Type",
+      "type": "string"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "decided_at": {
+      "format": "date-time",
+      "title": "Decided At",
+      "type": "string"
+    },
+    "decision_confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Decision Confidence",
+      "type": "number"
+    },
+    "decision_id": {
+      "minLength": 1,
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "evidence_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Evidence Hash",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "execution_status": {
+      "enum": [
+        "simulated_preview",
+        "withheld"
+      ],
+      "title": "Execution Status",
+      "type": "string"
+    },
+    "explanation": {
+      "maxLength": 240,
+      "minLength": 1,
+      "title": "Explanation",
+      "type": "string"
+    },
+    "quality_flags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Quality Flags",
+      "type": "array"
+    },
+    "quality_status": {
+      "enum": [
+        "ok",
+        "degraded",
+        "insufficient_signal",
+        "uncalibrated"
+      ],
+      "title": "Quality Status",
+      "type": "string"
+    },
+    "reason_code": {
+      "enum": [
+        "simulated_source_preview",
+        "awaiting_validation",
+        "insufficient_evidence",
+        "evidence_integrity_failed",
+        "source_contract_mismatch",
+        "no_actuator_adapter"
+      ],
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "agent-action-decision.v1",
+      "default": "agent-action-decision.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sensor_confidence_cap": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Sensor Confidence Cap",
+      "type": "number"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "target": {
+      "enum": [
+        "inference_field_preview",
+        "none"
+      ],
+      "title": "Target",
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_id",
+    "session_id",
+    "cycle_id",
+    "evidence_hash",
+    "decided_at",
+    "source_mode",
+    "quality_status",
+    "action_type",
+    "execution_status",
+    "target",
+    "reason_code",
+    "explanation",
+    "evidence_refs",
+    "decision_confidence",
+    "sensor_confidence_cap"
+  ],
+  "title": "AgentActionDecision",
+  "type": "object"
+}

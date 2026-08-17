@@ -1,0 +1,43 @@
+menu "WiFi Spatial Council TX"
+
+config WSC_TX_CHANNEL
+    int "Fixed 2.4 GHz channel"
+    range 1 14
+    default 6
+    help
+        Deploy-time channel. Scan channels 1/6/11 and pick the quietest.
+
+config WSC_TX_RATE_HZ
+    int "Packet rate (packets per second)"
+    range 1 500
+    default 100
+    help
+        Target TX rate; each packet carries an incrementing uint32 sequence.
+
+config WSC_TX_ID
+    int "TX board ID"
+    default 1
+    help
+        Synthetic transmitter identity placed in the ESP-NOW payload. Never a
+        real MAC address.
+
+config WSC_TX_MAC_0
+    hex "TX MAC byte 0 (MSB)"
+    default 0x1a
+config WSC_TX_MAC_1
+    hex "TX MAC byte 1"
+    default 0x00
+config WSC_TX_MAC_2
+    hex "TX MAC byte 2"
+    default 0x00
+config WSC_TX_MAC_3
+    hex "TX MAC byte 3"
+    default 0x00
+config WSC_TX_MAC_4
+    hex "TX MAC byte 4"
+    default 0x00
+config WSC_TX_MAC_5
+    hex "TX MAC byte 5 (LSB)"
+    default 0x00
+
+endmenu

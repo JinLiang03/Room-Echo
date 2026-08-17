@@ -1,0 +1,652 @@
+{
+  "$defs": {
+    "AgentActionDecision": {
+      "$id": "https://wifi-spatial-council.local/schemas/agent_action_decision.schema.json",
+      "additionalProperties": false,
+      "description": "One deterministic safe action projection for a Council result.\n\nThe contract deliberately has no ``executed`` state. Mock and Replay may\nexpose a clearly labelled UI-only preview; Live is withheld until a real,\nseparately validated actuator adapter exists.",
+      "properties": {
+        "action_type": {
+          "enum": [
+            "stay_silent",
+            "ambient_light_preview",
+            "wait_and_observe"
+          ],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "cycle_id": {
+          "minLength": 1,
+          "title": "Cycle Id",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "decision_confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Decision Confidence",
+          "type": "number"
+        },
+        "decision_id": {
+          "minLength": 1,
+          "title": "Decision Id",
+          "type": "string"
+        },
+        "evidence_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Evidence Hash",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "execution_status": {
+          "enum": [
+            "simulated_preview",
+            "withheld"
+          ],
+          "title": "Execution Status",
+          "type": "string"
+        },
+        "explanation": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "quality_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "quality_status": {
+          "enum": [
+            "ok",
+            "degraded",
+            "insufficient_signal",
+            "uncalibrated"
+          ],
+          "title": "Quality Status",
+          "type": "string"
+        },
+        "reason_code": {
+          "enum": [
+            "simulated_source_preview",
+            "awaiting_validation",
+            "insufficient_evidence",
+            "evidence_integrity_failed",
+            "source_contract_mismatch",
+            "no_actuator_adapter"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-action-decision.v1",
+          "default": "agent-action-decision.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "session_id": {
+          "minLength": 1,
+          "title": "Session Id",
+          "type": "string"
+        },
+        "source_mode": {
+          "enum": [
+            "mock",
+            "replay",
+            "live"
+          ],
+          "title": "Source Mode",
+          "type": "string"
+        },
+        "target": {
+          "enum": [
+            "inference_field_preview",
+            "none"
+          ],
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision_id",
+        "session_id",
+        "cycle_id",
+        "evidence_hash",
+        "decided_at",
+        "source_mode",
+        "quality_status",
+        "action_type",
+        "execution_status",
+        "target",
+        "reason_code",
+        "explanation",
+        "evidence_refs",
+        "decision_confidence",
+        "sensor_confidence_cap"
+      ],
+      "title": "AgentActionDecision",
+      "type": "object"
+    },
+    "AgentContinuity": {
+      "additionalProperties": false,
+      "description": "Deterministic link from one role's current reading to its prior cycle.\n\nThe Council runtime computes this record from sealed proxy states and\ncommitted role outputs. Providers cannot write it, and it never feeds the\nsensing values or confidence chain.",
+      "properties": {
+        "changed_signals": {
+          "items": {
+            "enum": [
+              "motion",
+              "occupancy",
+              "depth",
+              "quality"
+            ],
+            "type": "string"
+          },
+          "title": "Changed Signals",
+          "type": "array"
+        },
+        "previous_cycle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Cycle Id"
+        },
+        "previous_evidence_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Evidence Hash"
+        },
+        "previous_record_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Record Id"
+        },
+        "relation": {
+          "enum": [
+            "initial",
+            "steady",
+            "intensified",
+            "eased",
+            "shifted",
+            "quality_changed",
+            "recovered",
+            "unknown"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-continuity.v1",
+          "default": "agent-continuity.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation",
+        "summary"
+      ],
+      "title": "AgentContinuity",
+      "type": "object"
+    },
+    "AgreementSummary": {
+      "additionalProperties": false,
+      "description": "How many agents agreed; never feeds the confidence formula.",
+      "properties": {
+        "agreement_ratio": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Agreement Ratio",
+          "type": "number"
+        },
+        "contradicting": {
+          "minimum": 0,
+          "title": "Contradicting",
+          "type": "integer"
+        },
+        "participants": {
+          "minimum": 0,
+          "title": "Participants",
+          "type": "integer"
+        },
+        "supporting": {
+          "minimum": 0,
+          "title": "Supporting",
+          "type": "integer"
+        },
+        "unresolved_challenges": {
+          "minimum": 0,
+          "title": "Unresolved Challenges",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "participants",
+        "supporting",
+        "contradicting",
+        "unresolved_challenges",
+        "agreement_ratio"
+      ],
+      "title": "AgreementSummary",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Agent Versions",
+          "type": "object"
+        },
+        "calibration_profile_id": {
+          "minLength": 1,
+          "title": "Calibration Profile Id",
+          "type": "string"
+        },
+        "contracts_version": {
+          "minLength": 1,
+          "title": "Contracts Version",
+          "type": "string"
+        },
+        "features_version": {
+          "minLength": 1,
+          "title": "Features Version",
+          "type": "string"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Models",
+          "type": "object"
+        },
+        "policy_version": {
+          "minLength": 1,
+          "title": "Policy Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contracts_version",
+        "features_version",
+        "calibration_profile_id",
+        "policy_version",
+        "generated_at"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "SoundConsensusMotion": {
+      "additionalProperties": false,
+      "description": "Sound Agent's non-audio translation of the approved Council state.",
+      "properties": {
+        "distance": {
+          "enum": [
+            "近",
+            "中",
+            "远",
+            "未知"
+          ],
+          "title": "Distance",
+          "type": "string"
+        },
+        "pitch": {
+          "enum": [
+            "低",
+            "中",
+            "高",
+            "未知"
+          ],
+          "title": "Pitch",
+          "type": "string"
+        },
+        "rhythm": {
+          "enum": [
+            "停顿",
+            "缓拍",
+            "稳拍",
+            "急拍",
+            "未知"
+          ],
+          "title": "Rhythm",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "sound-consensus-motion.v1",
+          "default": "sound-consensus-motion.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "synchrony": {
+          "enum": [
+            "松散",
+            "部分同步",
+            "同步",
+            "未知"
+          ],
+          "title": "Synchrony",
+          "type": "string"
+        },
+        "thickness": {
+          "enum": [
+            "薄",
+            "中",
+            "厚",
+            "未知"
+          ],
+          "title": "Thickness",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rhythm",
+        "pitch",
+        "distance",
+        "thickness",
+        "synchrony"
+      ],
+      "title": "SoundConsensusMotion",
+      "type": "object"
+    },
+    "SpatialLifeInteraction": {
+      "additionalProperties": false,
+      "description": "Fusion's bounded first-person response for the presentation overlay.",
+      "properties": {
+        "effect": {
+          "enum": [
+            "contract",
+            "expand",
+            "block",
+            "rest",
+            "startle",
+            "recover",
+            "gather",
+            "scatter",
+            "stagnate",
+            "surge",
+            "settle",
+            "activate",
+            "alert",
+            "float",
+            "hold",
+            "verify",
+            "echo"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 280,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "spatial-life-interaction.v1",
+          "default": "spatial-life-interaction.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "resting",
+            "recovering",
+            "gathering",
+            "expanding",
+            "blocked",
+            "surging",
+            "floating",
+            "waiting"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "state_label": {
+          "maxLength": 24,
+          "minLength": 1,
+          "title": "State Label",
+          "type": "string"
+        },
+        "wish": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Wish",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "state_label",
+        "message",
+        "wish",
+        "effect"
+      ],
+      "title": "SpatialLifeInteraction",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/council_result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Final synthesis. display_confidence is bounded by the sensor cap.",
+  "properties": {
+    "accepted_claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Accepted Claim Ids",
+      "type": "array"
+    },
+    "action_decision": {
+      "$ref": "#/$defs/AgentActionDecision"
+    },
+    "alternatives": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Alternatives",
+      "type": "array"
+    },
+    "audio_parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Audio Parameters",
+      "type": "object"
+    },
+    "continuity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AgentContinuity"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "display_confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Display Confidence",
+      "type": "number"
+    },
+    "evidence_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Evidence Hash",
+      "type": "string"
+    },
+    "headline": {
+      "minLength": 1,
+      "title": "Headline",
+      "type": "string"
+    },
+    "interpretation_agreement": {
+      "$ref": "#/$defs/AgreementSummary"
+    },
+    "life_interaction": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SpatialLifeInteraction"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "model_support": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Model Support",
+      "type": "number"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "schema_version": {
+      "const": "council-result.v1",
+      "default": "council-result.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sensor_confidence_cap": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Sensor Confidence Cap",
+      "type": "number"
+    },
+    "sound_motion": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SoundConsensusMotion"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "ambiguous",
+        "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+    },
+    "unresolved_challenge_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Challenge Ids",
+      "type": "array"
+    },
+    "visual_parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Visual Parameters",
+      "type": "object"
+    }
+  },
+  "required": [
+    "cycle_id",
+    "evidence_hash",
+    "status",
+    "headline",
+    "summary",
+    "sensor_confidence_cap",
+    "model_support",
+    "display_confidence",
+    "interpretation_agreement",
+    "action_decision",
+    "provenance"
+  ],
+  "title": "CouncilResult",
+  "type": "object"
+}

@@ -1,0 +1,68 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/council_usage_summary.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Aggregate observable call/token usage across completed cycles.",
+  "properties": {
+    "calls_by_role": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Calls By Role",
+      "type": "object"
+    },
+    "calls_by_status": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Calls By Status",
+      "type": "object"
+    },
+    "cycles_completed": {
+      "minimum": 0,
+      "title": "Cycles Completed",
+      "type": "integer"
+    },
+    "p50_latency_ms": {
+      "minimum": 0,
+      "title": "P50 Latency Ms",
+      "type": "number"
+    },
+    "schema_version": {
+      "const": "council-usage.v1",
+      "default": "council-usage.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "total_attempts": {
+      "minimum": 0,
+      "title": "Total Attempts",
+      "type": "integer"
+    },
+    "total_calls": {
+      "minimum": 0,
+      "title": "Total Calls",
+      "type": "integer"
+    },
+    "total_input_tokens": {
+      "minimum": 0,
+      "title": "Total Input Tokens",
+      "type": "integer"
+    },
+    "total_output_tokens": {
+      "minimum": 0,
+      "title": "Total Output Tokens",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "cycles_completed",
+    "total_calls",
+    "total_attempts",
+    "total_input_tokens",
+    "total_output_tokens",
+    "p50_latency_ms"
+  ],
+  "title": "CouncilUsageSummary",
+  "type": "object"
+}

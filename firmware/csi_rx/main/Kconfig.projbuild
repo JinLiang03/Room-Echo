@@ -1,0 +1,57 @@
+menu "WiFi Spatial Council RX"
+
+config WSC_RX_CHANNEL
+    int "Fixed 2.4 GHz channel (must match TX)"
+    range 1 14
+    default 6
+
+config WSC_RX_ID
+    int "RX board ID (1 = RX-A, 2 = RX-B)"
+    default 1
+    help
+        Synthetic receiver identity placed in every frame. Never a real MAC.
+
+config WSC_TX_MAC_0
+    hex "TX MAC byte 0 (MSB) used for filtering"
+    default 0x1a
+config WSC_TX_MAC_1
+    hex "TX MAC byte 1"
+    default 0x00
+config WSC_TX_MAC_2
+    hex "TX MAC byte 2"
+    default 0x00
+config WSC_TX_MAC_3
+    hex "TX MAC byte 3"
+    default 0x00
+config WSC_TX_MAC_4
+    hex "TX MAC byte 4"
+    default 0x00
+config WSC_TX_MAC_5
+    hex "TX MAC byte 5 (LSB)"
+    default 0x00
+
+config WSC_SERIAL_BAUD
+    int "Binary serial baud rate"
+    default 921600
+
+config WSC_SERIAL_UART
+    int "Binary serial UART number"
+    default 0
+
+config WSC_SERIAL_TX_GPIO
+    int "Binary serial TX GPIO (ESP32-S3 default U0TXD = 43)"
+    default 43
+
+config WSC_SERIAL_TX_BUF_SIZE
+    int "Serial TX buffer size (bytes)"
+    default 4096
+
+config WSC_CSI_SLOTS
+    int "CSI frame pool slot count"
+    range 4 64
+    default 16
+    help
+        Preallocated fixed-size slots. When full, the callback drops the frame
+        and increments the overflow counter; it never blocks.
+
+endmenu

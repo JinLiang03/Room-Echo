@@ -1,0 +1,27 @@
+{
+  "schema_version": "replay-manifest.v1",
+  "recording_id": "walk_through",
+  "session_id": "session-fixture-walk-through",
+  "created_at": "2026-08-06T08:00:00Z",
+  "source_mode": "mock",
+  "firmware_version": "0.0.0-mock",
+  "collector_version": "0.1.0",
+  "contracts_version": "1.0.0",
+  "features_version": null,
+  "estimator_version": null,
+  "board_hashes": {
+    "rx-a": "sha256:398f5562d4bf2467b098bdb836ac53e7ef786bfc1ed963b445085e8bb2a79d83",
+    "rx-b": "sha256:0e1616f3006cb57b1301122cabf352bb2aa52465418700e9424c8fe1d157cd01"
+  },
+  "topology_hash": "sha256:359891dec556ad665b48693024baea8f4b3c09168a8fa3c15669d1ed5d6bb58b",
+  "calibration_profile_id": "demo_room_v1",
+  "channel": 6,
+  "bandwidth_mhz": 20,
+  "files": [
+    "raw.csi.zst",
+    "events.jsonl"
+  ],
+  "ground_truth_present": false,
+  "privacy": "mock fixture; no real MACs, no identity",
+  "status": "complete"
+}

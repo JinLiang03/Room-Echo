@@ -1,0 +1,309 @@
+[
+  {
+    "calls": [
+      {
+        "attempts": 1,
+        "call_id": "call-0001",
+        "cycle_id": "cycle-0001",
+        "error": null,
+        "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+        "input_tokens": 0,
+        "latency_ms": 1,
+        "model": "mock",
+        "output_tokens": 0,
+        "phase": "propose",
+        "prompt_version": "council-prompt.v1",
+        "role": "feng_shui",
+        "schema_version": "council-call.v1",
+        "status": "ok",
+        "total_tokens": 0,
+        "trace_id": null
+      }
+    ],
+    "challenges": [
+      {
+        "assessment": {
+          "evidence_label": "证据有限",
+          "evidence_status": "limited",
+          "next_validation": "对照无实体运动但有干扰注入的下一周期。",
+          "rationale": "干扰注入仍可能形成相似代理组合。",
+          "schema_version": "skeptic-assessment.v1",
+          "withhold_judgment": true
+        },
+        "category": "confound",
+        "challenge_id": "challenge-0001",
+        "challenger_agent_id": "agent-skeptic-0001",
+        "continuity": null,
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/packet_coverage"
+        ],
+        "proposed_severity": "material",
+        "resolution_test": "对照无实体运动但有干扰注入的录制,若扰动仍升高则支持干扰假说. ",
+        "schema_version": "agent-challenge.v1",
+        "statement": "干扰注入可能伪造“气动/流通”意象,而非真实环境变化. ",
+        "status": "open",
+        "target_claim_id": "claim-0001"
+      }
+    ],
+    "claims": [
+      {
+        "agent_id": "agent-feng_shui-0001",
+        "agent_version": "mock-council.v1",
+        "alternative_explanations": [
+          "无线干扰或结构变化也可能形成此意象"
+        ],
+        "analysis_steps": [
+          {
+            "evidence_refs": [
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state",
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/occupancy/state",
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/depth/state"
+            ],
+            "phase": "observe",
+            "step_id": "observe",
+            "text": "读取证据包标量: motion=micro_motion, occupancy=low, depth=near; 仅引用标量,未读取 raw CSI。",
+            "title": "观察信号"
+          },
+          {
+            "evidence_refs": [
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status"
+            ],
+            "phase": "retrieve",
+            "step_id": "retrieve",
+            "text": "从知识库命中主概念『qi (气) as environmental flow』(Empirical and quantitative studies of Feng Shui); 备用视角『藏风聚气』。",
+            "title": "检索知识库"
+          },
+          {
+            "evidence_refs": [
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+            ],
+            "phase": "map",
+            "step_id": "map",
+            "text": "motion_micro_motion -> 气动; occupancy_low -> 气散/开阔; depth_near -> 明堂近",
+            "title": "意象映射"
+          },
+          {
+            "evidence_refs": [
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status"
+            ],
+            "phase": "reason",
+            "step_id": "reason",
+            "text": "把三种标量读成同一场气的三种侧面:流、聚、远近。读法成立的前提是标定与拓扑未变。",
+            "title": "推理"
+          },
+          {
+            "evidence_refs": [
+              "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+            ],
+            "phase": "conclude",
+            "step_id": "conclude",
+            "text": "收敛为命题: 以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读)。",
+            "title": "结论"
+          }
+        ],
+        "assumptions": [
+          "标定 profile 与当前拓扑匹配"
+        ],
+        "claim_id": "claim-0001",
+        "continuity": null,
+        "counter_evidence_refs": [],
+        "cycle_id": "cycle-0001",
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/value",
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+        ],
+        "falsification_test": "更换标定/拓扑后若意象不重现则推翻. ",
+        "kind": "observation",
+        "lens": "metaphor",
+        "presentation": {
+          "analysis": "活动轻微变化、充盈代理偏低、相对纵深偏近;此刻的流读作「散」。这是文化叙事隐喻。",
+          "contribution": "space_flow",
+          "contribution_label": "看见空间的流",
+          "effect": "scatter",
+          "role": "feng_shui",
+          "schema_version": "specialist-presentation.v1",
+          "state": "dispersing",
+          "state_label": "散"
+        },
+        "process": "",
+        "proposition": "以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读). ",
+        "reasoning_summary": "仅引用证据包标量,按知识库概念做隐喻映射. ",
+        "role": "feng_shui",
+        "schema_version": "agent-claim.v1",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/"
+        ],
+        "stance": "supports",
+        "state": "proposed",
+        "systematic_reading": {
+          "boundary_notes": [
+            "气、明堂、吉凶都是文化隐喻,不代表真实气流或运势。",
+            "本解读不产生任何测量值,也不改变传感器置信。"
+          ],
+          "headline": "以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读)。",
+          "layers": [
+            {
+              "explanation": "气流意象读作「微动」:运动标量描述的是代理变化,不是任何个体的具体动作。",
+              "metaphor": "气动",
+              "signal": "motion",
+              "state": "micro_motion"
+            },
+            {
+              "explanation": "气局意象读作「疏朗」:占用密度描述遮挡与空间充盈度,不是人数。",
+              "metaphor": "气散/开阔",
+              "signal": "occupancy",
+              "state": "low"
+            },
+            {
+              "explanation": "明堂远近读作「近前」:纵深是相对层级,不是米制距离。",
+              "metaphor": "明堂近",
+              "signal": "depth",
+              "state": "near"
+            }
+          ],
+          "multimodal_hints": [
+            "若接入声学模态,可对照环境声级与“气动”意象是否一致,但需独立标定。",
+            "若接入温湿度/光照模态,可验证风感意象与通风条件的相关性;仍属隐喻对照。"
+          ],
+          "narrative": "按青禾的读法,这间房的气是缓的、散的、近的:气流意象读作「微动」,气局意象读作「疏朗」,明堂远近读作「近前」。这不是占卜,也不是对命运的判断;只是把标量读成一场呼吸。",
+          "scene_sketch": "如果此刻有风,它会在近前慢慢转向;空气带着疏朗的密度,安静得像一场刚醒的呼吸。气不急着聚,也不急着散,整个房间像一张还没落定的棋局。"
+        }
+      },
+      {
+        "agent_id": "agent-architecture-0002",
+        "agent_version": "mock-council.v1",
+        "alternative_explanations": [],
+        "analysis_steps": [],
+        "assumptions": [],
+        "claim_id": "claim-0002",
+        "continuity": null,
+        "counter_evidence_refs": [],
+        "cycle_id": "cycle-0001",
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/depth/state"
+        ],
+        "falsification_test": "无可证伪性要求(限制性说明). ",
+        "kind": "limitation",
+        "lens": "metaphor",
+        "presentation": {
+          "analysis": "当前房间的充盈代理偏低、相对纵深偏近;空间边界读作「展开」。",
+          "contribution": "space_form",
+          "contribution_label": "看见空间的形",
+          "effect": "expand",
+          "role": "architecture",
+          "schema_version": "specialist-presentation.v1",
+          "state": "expanding",
+          "state_label": "展开"
+        },
+        "process": "",
+        "proposition": "空间层级为相对代理,不提供米制距离(隐喻解读). ",
+        "reasoning_summary": "重申隐喻与测量边界. ",
+        "role": "architecture",
+        "schema_version": "agent-claim.v1",
+        "sources": [
+          "https://cup.columbia.edu/book/proxemics-and-the-architecture-of-social-interaction/9781941"
+        ],
+        "stance": "neutral",
+        "state": "proposed",
+        "systematic_reading": null
+      }
+    ],
+    "cycle_id": "cycle-0001",
+    "deadline_s": 15.0,
+    "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+    "finished_at": "2026-08-06T08:00:05Z",
+    "phase": "commit",
+    "rejections": [],
+    "result": {
+      "accepted_claim_ids": [
+        "claim-0001"
+      ],
+      "action_decision": {
+        "action_type": "ambient_light_preview",
+        "cycle_id": "cycle-0001",
+        "decided_at": "2026-08-06T08:00:05Z",
+        "decision_confidence": 0.68,
+        "decision_id": "action-session-mock-fixed-v1-cycle-0001",
+        "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status",
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/sensor/sensor_confidence_cap"
+        ],
+        "execution_status": "simulated_preview",
+        "explanation": "仅在推断场中模拟环境光反应,不触发外部设备。",
+        "quality_flags": [],
+        "quality_status": "ok",
+        "reason_code": "simulated_source_preview",
+        "schema_version": "agent-action-decision.v1",
+        "sensor_confidence_cap": 0.8,
+        "session_id": "session-mock-fixed-v1",
+        "source_mode": "mock",
+        "target": "inference_field_preview"
+      },
+      "alternatives": [
+        "无线干扰或结构变化也可能形成此意象"
+      ],
+      "audio_parameters": {
+        "enabled": "false",
+        "tone": "neutral"
+      },
+      "continuity": null,
+      "cycle_id": "cycle-0001",
+      "display_confidence": 0.8,
+      "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+      "headline": "多视角受限解读",
+      "interpretation_agreement": {
+        "agreement_ratio": 0.5,
+        "contradicting": 0,
+        "participants": 2,
+        "supporting": 1,
+        "unresolved_challenges": 0
+      },
+      "life_interaction": {
+        "effect": "expand",
+        "message": "我正在展开:活动只有轻微变化,房间边界偏松,层次偏近。",
+        "schema_version": "spatial-life-interaction.v1",
+        "state": "expanding",
+        "state_label": "正在展开",
+        "wish": "如果这正是你想记住的时刻,请保存我并与下一周期对照。"
+      },
+      "limitations": [
+        "隐喻解读不等于测量;代理信号,非影像或人数"
+      ],
+      "model_support": 0.8,
+      "provenance": {
+        "agent_versions": {
+          "feng_shui": "mock-council.v1"
+        },
+        "calibration_profile_id": "demo_room_v1",
+        "contracts_version": "1.0.0",
+        "features_version": "features-v2",
+        "generated_at": "2026-08-06T08:00:05Z",
+        "models": {
+          "feng_shui": "mock"
+        },
+        "policy_version": "policy-v1"
+      },
+      "schema_version": "council-result.v1",
+      "sensor_confidence_cap": 0.8,
+      "sound_motion": {
+        "distance": "近",
+        "pitch": "低",
+        "rhythm": "缓拍",
+        "schema_version": "sound-consensus-motion.v1",
+        "synchrony": "部分同步",
+        "thickness": "薄"
+      },
+      "status": "supported",
+      "summary": "专家主张引用同一证据包,无未解决质疑. ",
+      "unresolved_challenge_ids": [],
+      "visual_parameters": {
+        "palette": "proxy_blue",
+        "shape": "rings"
+      }
+    },
+    "schema_version": "council-cycle.v1",
+    "started_at": "2026-08-06T08:00:04.400000Z",
+    "status": "supported"
+  }
+]

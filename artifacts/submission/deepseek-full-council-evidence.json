@@ -1,0 +1,126 @@
+{
+  "schema_version": "real-council-verification.v1",
+  "verified_at": "2026-08-10T09:32:50.748247+00:00",
+  "endpoint": "https://wifi-spatial-council-replay.onrender.com/api/agent/invoke",
+  "session_id": "replay-demo_2min-f3e07d47",
+  "source_mode": "replay",
+  "source_is_simulated": true,
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "provider_status": "ok",
+  "technical_status": "ready",
+  "real_model_calls": 10,
+  "cycle_id": "cycle-0017",
+  "evidence_hash": "sha256:d5443641f39275e289657bece6273b0c9a2c54320ea6e2f3b36780be0b6cf771",
+  "cycle_status": "ambiguous",
+  "successful_phases": [
+    "cross_examine",
+    "propose",
+    "respond",
+    "synthesize"
+  ],
+  "calls": [
+    {
+      "role": "architecture",
+      "phase": "propose",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 6439,
+      "input_tokens": 2809,
+      "output_tokens": 157
+    },
+    {
+      "role": "biota",
+      "phase": "propose",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3843,
+      "input_tokens": 2799,
+      "output_tokens": 218
+    },
+    {
+      "role": "feng_shui",
+      "phase": "propose",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3919,
+      "input_tokens": 2825,
+      "output_tokens": 260
+    },
+    {
+      "role": "psyche",
+      "phase": "propose",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3808,
+      "input_tokens": 2821,
+      "output_tokens": 252
+    },
+    {
+      "role": "soundscape",
+      "phase": "propose",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3096,
+      "input_tokens": 2806,
+      "output_tokens": 134
+    },
+    {
+      "role": "skeptic",
+      "phase": "cross_examine",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 6799,
+      "input_tokens": 15010,
+      "output_tokens": 699
+    },
+    {
+      "role": "architecture",
+      "phase": "respond",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 2723,
+      "input_tokens": 5572,
+      "output_tokens": 187
+    },
+    {
+      "role": "biota",
+      "phase": "respond",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3389,
+      "input_tokens": 5546,
+      "output_tokens": 215
+    },
+    {
+      "role": "feng_shui",
+      "phase": "respond",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3073,
+      "input_tokens": 5664,
+      "output_tokens": 267
+    },
+    {
+      "role": "fusion",
+      "phase": "synthesize",
+      "model": "deepseek-v4-flash",
+      "status": "ok",
+      "latency_ms": 3199,
+      "input_tokens": 12618,
+      "output_tokens": 314
+    }
+  ],
+  "result": {
+    "status": "ambiguous",
+    "headline": "我仍在漂浮",
+    "display_confidence": 0.4675,
+    "sensor_confidence_cap": 0.935
+  },
+  "truth_boundary": [
+    "inference field, not a camera image",
+    "no identity, person count, pose, behaviour, or emotion recognition",
+    "occupancy and depth are calibrated relative proxies, not metric measurements",
+    "final claim confidence never exceeds the sensor confidence cap"
+  ]
+}

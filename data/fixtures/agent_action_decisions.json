@@ -1,0 +1,24 @@
+[
+  {
+    "action_type": "ambient_light_preview",
+    "cycle_id": "cycle-0001",
+    "decided_at": "2026-08-06T08:00:05Z",
+    "decision_confidence": 0.68,
+    "decision_id": "action-session-mock-fixed-v1-cycle-0001",
+    "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+    "evidence_refs": [
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status",
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/sensor/sensor_confidence_cap"
+    ],
+    "execution_status": "simulated_preview",
+    "explanation": "仅在推断场中模拟环境光反应,不触发外部设备。",
+    "quality_flags": [],
+    "quality_status": "ok",
+    "reason_code": "simulated_source_preview",
+    "schema_version": "agent-action-decision.v1",
+    "sensor_confidence_cap": 0.8,
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "target": "inference_field_preview"
+  }
+]

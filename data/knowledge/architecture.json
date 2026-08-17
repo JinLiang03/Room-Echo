@@ -1,0 +1,35 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "architecture",
+  "lens": "metaphor",
+  "persona": {
+    "name": "筑间",
+    "glyph": "📐",
+    "tagline": "画剖面的人:把空间当一张图纸。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Architecture interpretation agent. Reads proxy signals as spatial/flow metaphors of the built environment.",
+  "entries": [
+    {
+      "concept": "proxemics (personal space zones)",
+      "source": "Hall, Edward T. — Proxemics and the Architecture of Social Interaction",
+      "url": "https://cup.columbia.edu/book/proxemics-and-the-architecture-of-social-interaction/9781941",
+      "relevance": "Intimate/personal/social/public zones structure how space is read; depth_zone_proxy maps to a spatial 'layer' metaphor.",
+      "rule": "depth_near -> intimate/close layer; depth_mid -> personal/social layer; depth_far -> public/peripheral layer; depth_unknown -> layer unresolved (abstain)"
+    },
+    {
+      "concept": "movement and circulation in space",
+      "source": "A System for the Notation of Proxemic Behavior (Hall)",
+      "url": "https://e-edu.nbu.bg/pluginfile.php/1261108/mod_resource/content/1/Edward%20Hall%20-%20A%2",
+      "relevance": "Architecture reads motion as circulation/flow through a plan; motion_intensity is a 'circulation activity' metaphor.",
+      "rule": "motion_idle -> 动线安静 (static plan); motion_micro_motion -> 动线轻动; motion_moving -> 动线流动 (circulation proxy); motion_fast_change -> 动线躁动 (disrupted circulation)"
+    },
+    {
+      "concept": "occupancy as spatial load",
+      "source": "Proxemics and the Architecture of Social Interaction (Columbia UP)",
+      "url": "https://cup.columbia.edu/book/proxemics-and-the-architecture-of-social-interaction/9781941",
+      "relevance": "Occupancy proxy reads as 'spatial load' of a volume, not people.",
+      "rule": "occupancy_low -> 空间疏朗 (sparse volume); occupancy_high -> 空间充盈 (full volume); occupancy_unknown -> 空间读数不明 (abstain)"
+    }
+  ]
+}
