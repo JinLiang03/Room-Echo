@@ -1,0 +1,32 @@
+{
+  "build": {
+    "artifacts": {
+      "csi_rx": {
+        "path": "firmware/csi_rx/build/csi_rx.bin",
+        "sha256": "sha256:1af2381555750269a1fc4369d8ede4225f7a396b8795db6913971ecfbd19019f",
+        "size_bytes": 735584
+      },
+      "csi_tx": {
+        "path": "firmware/csi_tx/build/csi_tx.bin",
+        "sha256": "sha256:5a8abc38a0e08f9d885a318ab0df8b44a477a6c169201aef0cab87e5a65a767f",
+        "size_bytes": 726256
+      }
+    },
+    "esp_csi_commit": "8633d67152db2808f141cc1595970aa9cf406045",
+    "esp_idf_git_commit": "30aaf64524299d3bde422ca9a2848090d1bc5d0f",
+    "esp_idf_version": "ESP-IDF v5.5.2",
+    "firmware_version": "0.1.0",
+    "target": "esp32s3"
+  },
+  "confirmed_esp32_boards": [],
+  "generated_at": "2026-08-08T09:26:02.119785+00:00",
+  "non_system_ports": [],
+  "notes": "No ESP32 board identity was confirmed and no device was probed or flashed. Three boards, antennas, power, room geometry, and a five-point relative depth axis must be prepared before Live validation.",
+  "problems": [
+    "expected three confirmed ESP32 serial devices; prerequisite not met",
+    "board identities and serial roles remain unconfirmed"
+  ],
+  "schema_version": "hardware-inventory.v1",
+  "serial_ports": [],
+  "status": "blocked_by_hardware"
+}

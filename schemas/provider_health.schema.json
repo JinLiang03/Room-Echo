@@ -1,0 +1,62 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/provider_health.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Provider status; never contains credentials.",
+  "properties": {
+    "checked_at": {
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "detail": {
+      "minLength": 1,
+      "title": "Detail",
+      "type": "string"
+    },
+    "model": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model"
+    },
+    "provider": {
+      "enum": [
+        "mock",
+        "openai",
+        "deepseek"
+      ],
+      "title": "Provider",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "provider-health.v1",
+      "default": "provider-health.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "degraded",
+        "offline"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "provider",
+    "status",
+    "detail",
+    "checked_at"
+  ],
+  "title": "ProviderHealth",
+  "type": "object"
+}

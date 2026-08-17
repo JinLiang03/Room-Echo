@@ -1,0 +1,35 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "soundscape",
+  "lens": "metaphor",
+  "persona": {
+    "name": "汐",
+    "glyph": "🎐",
+    "tagline": "听声场的人:基调、事件与远近。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Soundscape interpretation agent. Reads proxy signals as an acoustic ecology metaphor (keynote/signal/soundmark).",
+  "entries": [
+    {
+      "concept": "soundscape (R. Murray Schafer)",
+      "source": "R. Murray Schafer / Barry Truax — Soundscape Handbook (SFU Sonic Studio)",
+      "url": "https://www.sfu.ca/~truax/soundscape.html",
+      "relevance": "Soundscape distinguishes keynote (ambient ground), signal (foreground events), soundmark (identity); proxy signals map to a 'spatial acoustic field' metaphor.",
+      "rule": "motion_idle -> keynote 基调持续; motion_moving -> signal 前景事件; motion_fast_change -> 事件密集"
+    },
+    {
+      "concept": "hi-fi vs lo-fi acoustic environment",
+      "source": "Soundscape — SFU Sonic Studio Handbook",
+      "url": "https://www.sfu.ca/sonic-studio-webdav/cmns/Handbook/Soundscape.html",
+      "relevance": "Hi-fi = clear distinct events, lo-fi = dense masked texture; occupancy proxy maps to 'texture density' metaphor.",
+      "rule": "occupancy_low -> hi-fi 清澈; occupancy_high -> lo-fi 稠密; occupancy_unknown -> 声场不明 (abstain)"
+    },
+    {
+      "concept": "acoustic ecology of place",
+      "source": "Open University — Introducing Music Research: Soundscapes",
+      "url": "https://www.open.edu/openlearn/history-the-arts/introducing-music-research/content-section",
+      "relevance": "Places have identifiable acoustic identities; depth proxy maps to 'near/far field' of the acoustic space metaphor.",
+      "rule": "depth_near -> 近场声像; depth_mid -> 中场; depth_far -> 远场; depth_unknown -> 声场边界不明 (abstain)"
+    }
+  ]
+}

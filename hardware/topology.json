@@ -1,0 +1,12 @@
+{
+  "schema_version": "topology.v1",
+  "status": "blocked_by_hardware",
+  "generated_at": "2026-08-06T20:02:48.735879+00:00",
+  "room": null,
+  "board_positions": null,
+  "antenna_direction": null,
+  "depth_axis_points": null,
+  "topology_hash": null,
+  "photo_paths": [],
+  "note": "room/topology not prepared; no photos or measurements recorded"
+}

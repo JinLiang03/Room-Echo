@@ -1,0 +1,61 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/ws_event.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "emitted_at": {
+      "format": "date-time",
+      "title": "Emitted At",
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "session.status",
+        "source.health",
+        "signal.frame",
+        "quality.update",
+        "cycle.started",
+        "agent.claim",
+        "agent.challenge",
+        "agent.response",
+        "policy.rejection",
+        "synthesis.result",
+        "render.update",
+        "alert",
+        "heartbeat"
+      ],
+      "title": "Event Type",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "ws-event.v1",
+      "default": "ws-event.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 0,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "sequence",
+    "emitted_at",
+    "event_type",
+    "payload"
+  ],
+  "title": "WebSocketEnvelope",
+  "type": "object"
+}

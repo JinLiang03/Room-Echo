@@ -1,0 +1,116 @@
+[
+  {
+    "depth_zone": {
+      "confidence": 0.7,
+      "probabilities": {
+        "far": 0.15,
+        "mid": 0.7,
+        "near": 0.1,
+        "unknown": 0.05
+      },
+      "state": "mid"
+    },
+    "ended_at": "2026-08-06T08:00:02Z",
+    "evidence_refs": [
+      "raw://fixtures/walk_through/raw.csi.zst#window-0001"
+    ],
+    "motion": {
+      "confidence": 0.9,
+      "state": "idle",
+      "value": 0.05
+    },
+    "occupancy_density": {
+      "confidence": 0.85,
+      "probabilities": {
+        "high": 0.03,
+        "low": 0.8,
+        "medium": 0.15,
+        "unknown": 0.02
+      },
+      "state": "low"
+    },
+    "schema_version": "1.0.0",
+    "sensor_confidence_cap": 0.9,
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "started_at": "2026-08-06T08:00:00Z",
+    "status": "ok",
+    "window_id": "window-0001-calm"
+  },
+  {
+    "depth_zone": {
+      "confidence": 0.68,
+      "probabilities": {
+        "far": 0.05,
+        "mid": 0.2,
+        "near": 0.72,
+        "unknown": 0.03
+      },
+      "state": "near"
+    },
+    "ended_at": "2026-08-06T08:00:04.250000Z",
+    "evidence_refs": [
+      "raw://fixtures/walk_through/raw.csi.zst#window-0002"
+    ],
+    "motion": {
+      "confidence": 0.8,
+      "state": "moving",
+      "value": 0.7
+    },
+    "occupancy_density": {
+      "confidence": 0.75,
+      "probabilities": {
+        "high": 0.1,
+        "low": 0.1,
+        "medium": 0.75,
+        "unknown": 0.05
+      },
+      "state": "medium"
+    },
+    "schema_version": "1.0.0",
+    "sensor_confidence_cap": 0.8,
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "started_at": "2026-08-06T08:00:02.250000Z",
+    "status": "ok",
+    "window_id": "window-0002-moving"
+  },
+  {
+    "depth_zone": {
+      "confidence": 0.2,
+      "probabilities": {
+        "far": 0.0,
+        "mid": 0.0,
+        "near": 0.0,
+        "unknown": 1.0
+      },
+      "state": "unknown"
+    },
+    "ended_at": "2026-08-06T08:00:06.500000Z",
+    "evidence_refs": [
+      "raw://fixtures/walk_through/raw.csi.zst#window-0003"
+    ],
+    "motion": {
+      "confidence": 0.2,
+      "state": "unknown",
+      "value": 0.0
+    },
+    "occupancy_density": {
+      "confidence": 0.2,
+      "probabilities": {
+        "high": 0.0,
+        "low": 0.0,
+        "medium": 0.0,
+        "unknown": 1.0
+      },
+      "state": "unknown"
+    },
+    "schema_version": "1.0.0",
+    "sensor_confidence_cap": 0.2,
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "started_at": "2026-08-06T08:00:04.500000Z",
+    "status": "insufficient_signal",
+    "window_id": "window-0003-insufficient"
+  }
+]

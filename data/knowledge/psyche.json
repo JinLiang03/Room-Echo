@@ -1,0 +1,35 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "psyche",
+  "lens": "metaphor",
+  "persona": {
+    "name": "澄",
+    "glyph": "🌙",
+    "tagline": "读空间松紧的视角:只谈隐私体验,不猜测个体。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Psychology interpretation agent. Reads proxy signals as an ambient 'space mood' metaphor; never diagnoses individuals.",
+  "entries": [
+    {
+      "concept": "privacy, territoriality, personal space",
+      "source": "Theoretical and Empirical Issues with Regard to Privacy, Territoriality, Personal Space (Environment and Behavior, 1976)",
+      "url": "https://journals.sagepub.com/doi/10.1177/001391657600800101",
+      "relevance": "Spaces are read through privacy/territoriality lenses; depth proxy maps to an 'intimacy gradient' metaphor.",
+      "rule": "depth_near -> 亲密带 (intimate band); depth_mid -> 社交带 (social band); depth_far -> 公共带 (public band); depth_unknown -> 边界不明 (abstain)"
+    },
+    {
+      "concept": "presence and surveillance perception",
+      "source": "Surveillance as a variable explaining why other people's presence in a park setting affect... (Landscape Online)",
+      "url": "https://www.landscape-online.org/index.php/lo/article/view/LO.2024.1123",
+      "relevance": "Environmental occupancy cues can change spatial comfort; the occupancy proxy is only an ambient spatial-presence metaphor.",
+      "rule": "occupancy_low -> 空间在场感舒展; occupancy_medium -> 空间在场感聚拢; occupancy_high -> 空间在场感收紧; occupancy_unknown -> 空间在场感不明"
+    },
+    {
+      "concept": "ambient restlessness vs calm",
+      "source": "Visual relationships and where people want to see others (Journal of Environmental Psychology)",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0272494420306976",
+      "relevance": "Spatial restlessness/calm are psychological readings of environments; motion maps to a 'space restlessness' metaphor.",
+      "rule": "motion_idle -> 空间心境平静; motion_moving -> 空间心境活跃; motion_fast_change -> 空间心境焦躁 (metaphor only)"
+    }
+  ]
+}

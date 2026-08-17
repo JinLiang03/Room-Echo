@@ -1,0 +1,35 @@
+{
+  "schema_version": "hardware-report.v1",
+  "status": "blocked_by_hardware",
+  "generated_at": "2026-08-06T20:02:48.731828+00:00",
+  "gate": "calibrate-live",
+  "problems": [
+    "tx port does not exist: /dev/ttyUSB2",
+    "rx-a port does not exist: /dev/ttyUSB0",
+    "rx-b port does not exist: /dev/ttyUSB1"
+  ],
+  "build": {
+    "target": "esp32s3",
+    "esp_idf_version": "ESP-IDF v5.5.2",
+    "esp_idf_git_commit": "30aaf64524299d3bde422ca9a2848090d1bc5d0f",
+    "esp_csi_commit": "8633d67152db2808f141cc1595970aa9cf406045",
+    "firmware_version": "0.1.0",
+    "artifacts": {
+      "csi_tx": {
+        "path": "firmware/csi_tx/build/csi_tx.bin",
+        "sha256": "sha256:f66f414bdd9c2cc2226755845d4ba365ae50b2ea1f1b0b95e7b9fbb10f5072c6",
+        "size_bytes": 726336
+      },
+      "csi_rx": {
+        "path": "firmware/csi_rx/build/csi_rx.bin",
+        "sha256": "sha256:fed4b348dbf33a13efb664f9a8e446116f866b079ef6e4a1fc133c3025d9d8ee",
+        "size_bytes": 735680
+      }
+    }
+  },
+  "topology": null,
+  "room": null,
+  "devices_confirmed": false,
+  "report": "firmware_flash_report.json",
+  "result": "not_run"
+}

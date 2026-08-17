@@ -1,0 +1,1435 @@
+{
+  "$defs": {
+    "AgentChallenge": {
+      "$id": "https://wifi-spatial-council.local/schemas/agent_challenge.schema.json",
+      "additionalProperties": false,
+      "properties": {
+        "assessment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SkepticAssessment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "category": {
+          "enum": [
+            "confound",
+            "missing_evidence",
+            "calibration_mismatch",
+            "causal_overreach",
+            "contradiction",
+            "stale_evidence"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "challenge_id": {
+          "minLength": 1,
+          "title": "Challenge Id",
+          "type": "string"
+        },
+        "challenger_agent_id": {
+          "minLength": 1,
+          "title": "Challenger Agent Id",
+          "type": "string"
+        },
+        "continuity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AgentContinuity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "proposed_severity": {
+          "enum": [
+            "info",
+            "material",
+            "blocking"
+          ],
+          "title": "Proposed Severity",
+          "type": "string"
+        },
+        "resolution_test": {
+          "minLength": 1,
+          "title": "Resolution Test",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-challenge.v1",
+          "default": "agent-challenge.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "resolved",
+            "accepted",
+            "rejected_by_policy"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "target_claim_id": {
+          "minLength": 1,
+          "title": "Target Claim Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "challenge_id",
+        "target_claim_id",
+        "challenger_agent_id",
+        "category",
+        "proposed_severity",
+        "statement",
+        "resolution_test",
+        "status"
+      ],
+      "title": "AgentChallenge",
+      "type": "object"
+    },
+    "AgentClaim": {
+      "$id": "https://wifi-spatial-council.local/schemas/agent_claim.schema.json",
+      "additionalProperties": false,
+      "properties": {
+        "agent_id": {
+          "minLength": 1,
+          "title": "Agent Id",
+          "type": "string"
+        },
+        "agent_version": {
+          "minLength": 1,
+          "title": "Agent Version",
+          "type": "string"
+        },
+        "alternative_explanations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternative Explanations",
+          "type": "array"
+        },
+        "analysis_steps": {
+          "items": {
+            "$ref": "#/$defs/AnalysisStep"
+          },
+          "title": "Analysis Steps",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "claim_id": {
+          "minLength": 1,
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "continuity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AgentContinuity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "counter_evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Counter Evidence Refs",
+          "type": "array"
+        },
+        "cycle_id": {
+          "minLength": 1,
+          "title": "Cycle Id",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "falsification_test": {
+          "minLength": 1,
+          "title": "Falsification Test",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "observation",
+            "hypothesis",
+            "alternative",
+            "limitation"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "lens": {
+          "default": "sensor",
+          "enum": [
+            "sensor",
+            "metaphor"
+          ],
+          "title": "Lens",
+          "type": "string"
+        },
+        "presentation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SpecialistPresentation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "process": {
+          "default": "",
+          "title": "Process",
+          "type": "string"
+        },
+        "proposition": {
+          "minLength": 1,
+          "title": "Proposition",
+          "type": "string"
+        },
+        "reasoning_summary": {
+          "minLength": 1,
+          "title": "Reasoning Summary",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-claim.v1",
+          "default": "agent-claim.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "stance": {
+          "enum": [
+            "supports",
+            "contradicts",
+            "neutral"
+          ],
+          "title": "Stance",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "proposed",
+            "challenged",
+            "revised",
+            "conceded",
+            "withdrawn",
+            "accepted"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "systematic_reading": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SystematicReading"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "claim_id",
+        "cycle_id",
+        "agent_id",
+        "agent_version",
+        "role",
+        "kind",
+        "state",
+        "proposition",
+        "stance",
+        "evidence_refs",
+        "falsification_test",
+        "reasoning_summary"
+      ],
+      "title": "AgentClaim",
+      "type": "object"
+    },
+    "AgentContinuity": {
+      "additionalProperties": false,
+      "description": "Deterministic link from one role's current reading to its prior cycle.\n\nThe Council runtime computes this record from sealed proxy states and\ncommitted role outputs. Providers cannot write it, and it never feeds the\nsensing values or confidence chain.",
+      "properties": {
+        "changed_signals": {
+          "items": {
+            "enum": [
+              "motion",
+              "occupancy",
+              "depth",
+              "quality"
+            ],
+            "type": "string"
+          },
+          "title": "Changed Signals",
+          "type": "array"
+        },
+        "previous_cycle_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Cycle Id"
+        },
+        "previous_evidence_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Evidence Hash"
+        },
+        "previous_record_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Record Id"
+        },
+        "relation": {
+          "enum": [
+            "initial",
+            "steady",
+            "intensified",
+            "eased",
+            "shifted",
+            "quality_changed",
+            "recovered",
+            "unknown"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "agent-continuity.v1",
+          "default": "agent-continuity.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relation",
+        "summary"
+      ],
+      "title": "AgentContinuity",
+      "type": "object"
+    },
+    "AgreementSummary": {
+      "additionalProperties": false,
+      "description": "How many agents agreed; never feeds the confidence formula.",
+      "properties": {
+        "agreement_ratio": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Agreement Ratio",
+          "type": "number"
+        },
+        "contradicting": {
+          "minimum": 0,
+          "title": "Contradicting",
+          "type": "integer"
+        },
+        "participants": {
+          "minimum": 0,
+          "title": "Participants",
+          "type": "integer"
+        },
+        "supporting": {
+          "minimum": 0,
+          "title": "Supporting",
+          "type": "integer"
+        },
+        "unresolved_challenges": {
+          "minimum": 0,
+          "title": "Unresolved Challenges",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "participants",
+        "supporting",
+        "contradicting",
+        "unresolved_challenges",
+        "agreement_ratio"
+      ],
+      "title": "AgreementSummary",
+      "type": "object"
+    },
+    "AnalysisStep": {
+      "additionalProperties": false,
+      "description": "One visible reasoning step in an agent's analysis trace.",
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "observe",
+            "compare",
+            "retrieve",
+            "map",
+            "reason",
+            "challenge",
+            "conclude"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "step_id": {
+          "minLength": 1,
+          "title": "Step Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_id",
+        "phase",
+        "title",
+        "text"
+      ],
+      "title": "AnalysisStep",
+      "type": "object"
+    },
+    "CouncilCallRecord": {
+      "$id": "https://wifi-spatial-council.local/schemas/council_call_record.schema.json",
+      "additionalProperties": false,
+      "description": "One provider call (or cache hit), with observable usage only.",
+      "properties": {
+        "attempts": {
+          "minimum": 1,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "call_id": {
+          "minLength": 1,
+          "title": "Call Id",
+          "type": "string"
+        },
+        "cycle_id": {
+          "minLength": 1,
+          "title": "Cycle Id",
+          "type": "string"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "evidence_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Evidence Hash",
+          "type": "string"
+        },
+        "input_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "latency_ms": {
+          "minimum": 0,
+          "title": "Latency Ms",
+          "type": "integer"
+        },
+        "model": {
+          "minLength": 1,
+          "title": "Model",
+          "type": "string"
+        },
+        "output_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "phase": {
+          "enum": [
+            "propose",
+            "cross_examine",
+            "respond",
+            "synthesize"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "prompt_version": {
+          "minLength": 1,
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "architecture",
+            "biota",
+            "feng_shui",
+            "psyche",
+            "soundscape",
+            "skeptic",
+            "fusion"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "council-call.v1",
+          "default": "council-call.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "retry",
+            "timeout",
+            "error",
+            "offline",
+            "cache_hit"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "total_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Total Tokens",
+          "type": "integer"
+        },
+        "trace_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trace Id"
+        }
+      },
+      "required": [
+        "call_id",
+        "cycle_id",
+        "role",
+        "phase",
+        "model",
+        "prompt_version",
+        "evidence_hash",
+        "status",
+        "latency_ms",
+        "attempts"
+      ],
+      "title": "CouncilCallRecord",
+      "type": "object"
+    },
+    "CouncilResult": {
+      "$id": "https://wifi-spatial-council.local/schemas/council_result.schema.json",
+      "additionalProperties": false,
+      "description": "Final synthesis. display_confidence is bounded by the sensor cap.",
+      "properties": {
+        "accepted_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Accepted Claim Ids",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "audio_parameters": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Audio Parameters",
+          "type": "object"
+        },
+        "continuity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AgentContinuity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cycle_id": {
+          "minLength": 1,
+          "title": "Cycle Id",
+          "type": "string"
+        },
+        "display_confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Display Confidence",
+          "type": "number"
+        },
+        "evidence_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Evidence Hash",
+          "type": "string"
+        },
+        "headline": {
+          "minLength": 1,
+          "title": "Headline",
+          "type": "string"
+        },
+        "interpretation_agreement": {
+          "$ref": "#/$defs/AgreementSummary"
+        },
+        "life_interaction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SpatialLifeInteraction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "model_support": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Model Support",
+          "type": "number"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "schema_version": {
+          "const": "council-result.v1",
+          "default": "council-result.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sensor_confidence_cap": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Sensor Confidence Cap",
+          "type": "number"
+        },
+        "sound_motion": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SoundConsensusMotion"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "status": {
+          "enum": [
+            "supported",
+            "ambiguous",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "summary": {
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "unresolved_challenge_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unresolved Challenge Ids",
+          "type": "array"
+        },
+        "visual_parameters": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Visual Parameters",
+          "type": "object"
+        }
+      },
+      "required": [
+        "cycle_id",
+        "evidence_hash",
+        "status",
+        "headline",
+        "summary",
+        "sensor_confidence_cap",
+        "model_support",
+        "display_confidence",
+        "interpretation_agreement",
+        "provenance"
+      ],
+      "title": "CouncilResult",
+      "type": "object"
+    },
+    "PolicyRejection": {
+      "$id": "https://wifi-spatial-council.local/schemas/policy_rejection.schema.json",
+      "additionalProperties": false,
+      "description": "A deterministic arbiter rejection; agents never write these themselves.",
+      "properties": {
+        "agent_id": {
+          "minLength": 1,
+          "title": "Agent Id",
+          "type": "string"
+        },
+        "cycle_id": {
+          "minLength": 1,
+          "title": "Cycle Id",
+          "type": "string"
+        },
+        "detail": {
+          "minLength": 1,
+          "title": "Detail",
+          "type": "string"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "rejected_at": {
+          "format": "date-time",
+          "title": "Rejected At",
+          "type": "string"
+        },
+        "rejection_id": {
+          "minLength": 1,
+          "title": "Rejection Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "architecture",
+            "biota",
+            "feng_shui",
+            "psyche",
+            "soundscape",
+            "skeptic",
+            "fusion"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "policy-rejection.v1",
+          "default": "policy-rejection.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "target_id": {
+          "minLength": 1,
+          "title": "Target Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rejection_id",
+        "cycle_id",
+        "target_id",
+        "agent_id",
+        "role",
+        "reason_code",
+        "detail",
+        "rejected_at"
+      ],
+      "title": "PolicyRejection",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Agent Versions",
+          "type": "object"
+        },
+        "calibration_profile_id": {
+          "minLength": 1,
+          "title": "Calibration Profile Id",
+          "type": "string"
+        },
+        "contracts_version": {
+          "minLength": 1,
+          "title": "Contracts Version",
+          "type": "string"
+        },
+        "features_version": {
+          "minLength": 1,
+          "title": "Features Version",
+          "type": "string"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Models",
+          "type": "object"
+        },
+        "policy_version": {
+          "minLength": 1,
+          "title": "Policy Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contracts_version",
+        "features_version",
+        "calibration_profile_id",
+        "policy_version",
+        "generated_at"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "ReadingLayer": {
+      "additionalProperties": false,
+      "description": "One signal's systematic reading within a persona interpretation.",
+      "properties": {
+        "explanation": {
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "metaphor": {
+          "minLength": 1,
+          "title": "Metaphor",
+          "type": "string"
+        },
+        "signal": {
+          "enum": [
+            "motion",
+            "occupancy",
+            "depth"
+          ],
+          "title": "Signal",
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "signal",
+        "state",
+        "metaphor",
+        "explanation"
+      ],
+      "title": "ReadingLayer",
+      "type": "object"
+    },
+    "SkepticAssessment": {
+      "additionalProperties": false,
+      "description": "Explicit evidence decision and one bounded next validation.",
+      "properties": {
+        "evidence_label": {
+          "enum": [
+            "证据充分",
+            "证据有限",
+            "证据不足"
+          ],
+          "title": "Evidence Label",
+          "type": "string"
+        },
+        "evidence_status": {
+          "enum": [
+            "sufficient",
+            "limited",
+            "insufficient"
+          ],
+          "title": "Evidence Status",
+          "type": "string"
+        },
+        "next_validation": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Next Validation",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "skeptic-assessment.v1",
+          "default": "skeptic-assessment.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "withhold_judgment": {
+          "title": "Withhold Judgment",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "evidence_status",
+        "evidence_label",
+        "withhold_judgment",
+        "rationale",
+        "next_validation"
+      ],
+      "title": "SkepticAssessment",
+      "type": "object"
+    },
+    "SoundConsensusMotion": {
+      "additionalProperties": false,
+      "description": "Sound Agent's non-audio translation of the approved Council state.",
+      "properties": {
+        "distance": {
+          "enum": [
+            "近",
+            "中",
+            "远",
+            "未知"
+          ],
+          "title": "Distance",
+          "type": "string"
+        },
+        "pitch": {
+          "enum": [
+            "低",
+            "中",
+            "高",
+            "未知"
+          ],
+          "title": "Pitch",
+          "type": "string"
+        },
+        "rhythm": {
+          "enum": [
+            "停顿",
+            "缓拍",
+            "稳拍",
+            "急拍",
+            "未知"
+          ],
+          "title": "Rhythm",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "sound-consensus-motion.v1",
+          "default": "sound-consensus-motion.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "synchrony": {
+          "enum": [
+            "松散",
+            "部分同步",
+            "同步",
+            "未知"
+          ],
+          "title": "Synchrony",
+          "type": "string"
+        },
+        "thickness": {
+          "enum": [
+            "薄",
+            "中",
+            "厚",
+            "未知"
+          ],
+          "title": "Thickness",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rhythm",
+        "pitch",
+        "distance",
+        "thickness",
+        "synchrony"
+      ],
+      "title": "SoundConsensusMotion",
+      "type": "object"
+    },
+    "SpatialLifeInteraction": {
+      "additionalProperties": false,
+      "description": "Fusion's bounded first-person response for the presentation overlay.",
+      "properties": {
+        "effect": {
+          "enum": [
+            "contract",
+            "expand",
+            "block",
+            "rest",
+            "startle",
+            "recover",
+            "gather",
+            "scatter",
+            "stagnate",
+            "surge",
+            "settle",
+            "activate",
+            "alert",
+            "float",
+            "hold",
+            "verify",
+            "echo"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 280,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "spatial-life-interaction.v1",
+          "default": "spatial-life-interaction.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "resting",
+            "recovering",
+            "gathering",
+            "expanding",
+            "blocked",
+            "surging",
+            "floating",
+            "waiting"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "state_label": {
+          "maxLength": 24,
+          "minLength": 1,
+          "title": "State Label",
+          "type": "string"
+        },
+        "wish": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Wish",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "state_label",
+        "message",
+        "wish",
+        "effect"
+      ],
+      "title": "SpatialLifeInteraction",
+      "type": "object"
+    },
+    "SpecialistPresentation": {
+      "additionalProperties": false,
+      "description": "Deterministic, UI-ready role contribution bound to sealed evidence.\n\nProvider prose remains available in ``AgentClaim.proposition`` for audit,\nwhile this compact projection prevents the live UI from guessing meaning\nby parsing free text. Soundscape deliberately has no prose analysis.",
+      "properties": {
+        "analysis": {
+          "anyOf": [
+            {
+              "maxLength": 280,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Analysis"
+        },
+        "contribution": {
+          "enum": [
+            "space_form",
+            "space_breath",
+            "space_flow",
+            "space_tendency",
+            "consensus_motion"
+          ],
+          "title": "Contribution",
+          "type": "string"
+        },
+        "contribution_label": {
+          "enum": [
+            "看见空间的形",
+            "看见空间的息",
+            "看见空间的流",
+            "看见空间的势",
+            "把共识翻译成运动"
+          ],
+          "title": "Contribution Label",
+          "type": "string"
+        },
+        "effect": {
+          "enum": [
+            "contract",
+            "expand",
+            "block",
+            "rest",
+            "startle",
+            "recover",
+            "gather",
+            "scatter",
+            "stagnate",
+            "surge",
+            "settle",
+            "activate",
+            "alert",
+            "float",
+            "hold",
+            "verify",
+            "echo"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "architecture",
+            "biota",
+            "feng_shui",
+            "psyche",
+            "soundscape"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "specialist-presentation.v1",
+          "default": "specialist-presentation.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "tightening",
+            "expanding",
+            "blocked",
+            "resting",
+            "startled",
+            "recovering",
+            "gathering",
+            "dispersing",
+            "stagnant",
+            "surging",
+            "settled",
+            "active",
+            "alert",
+            "floating",
+            "awaiting_consensus",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "state_label": {
+          "maxLength": 24,
+          "minLength": 1,
+          "title": "State Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "contribution",
+        "contribution_label",
+        "state",
+        "state_label",
+        "effect"
+      ],
+      "title": "SpecialistPresentation",
+      "type": "object"
+    },
+    "SystematicReading": {
+      "additionalProperties": false,
+      "description": "A structured, persona-voiced interpretation of the full evidence packet.\n\nEverything here is interpretation of calibrated proxy signals; no field\nmay quote a numeric measurement or claim sensor-equivalent perception.",
+      "properties": {
+        "boundary_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Boundary Notes",
+          "type": "array"
+        },
+        "headline": {
+          "minLength": 1,
+          "title": "Headline",
+          "type": "string"
+        },
+        "layers": {
+          "items": {
+            "$ref": "#/$defs/ReadingLayer"
+          },
+          "minItems": 1,
+          "title": "Layers",
+          "type": "array"
+        },
+        "multimodal_hints": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Multimodal Hints",
+          "type": "array"
+        },
+        "narrative": {
+          "minLength": 1,
+          "title": "Narrative",
+          "type": "string"
+        },
+        "scene_sketch": {
+          "minLength": 1,
+          "title": "Scene Sketch",
+          "type": "string"
+        }
+      },
+      "required": [
+        "headline",
+        "scene_sketch",
+        "layers",
+        "narrative"
+      ],
+      "title": "SystematicReading",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/council_cycle_detail.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Full auditable record of one council cycle (API view).",
+  "properties": {
+    "calls": {
+      "items": {
+        "$ref": "#/$defs/CouncilCallRecord"
+      },
+      "title": "Calls",
+      "type": "array"
+    },
+    "challenges": {
+      "items": {
+        "$ref": "#/$defs/AgentChallenge"
+      },
+      "title": "Challenges",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/AgentClaim"
+      },
+      "title": "Claims",
+      "type": "array"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "deadline_s": {
+      "minimum": 0,
+      "title": "Deadline S",
+      "type": "number"
+    },
+    "evidence_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Evidence Hash",
+      "type": "string"
+    },
+    "finished_at": {
+      "format": "date-time",
+      "title": "Finished At",
+      "type": "string"
+    },
+    "phase": {
+      "enum": [
+        "seal",
+        "gate",
+        "propose",
+        "cross_examine",
+        "respond",
+        "policy",
+        "synthesize",
+        "commit"
+      ],
+      "title": "Phase",
+      "type": "string"
+    },
+    "rejections": {
+      "items": {
+        "$ref": "#/$defs/PolicyRejection"
+      },
+      "title": "Rejections",
+      "type": "array"
+    },
+    "result": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CouncilResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "schema_version": {
+      "const": "council-cycle.v1",
+      "default": "council-cycle.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "ambiguous",
+        "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "cycle_id",
+    "evidence_hash",
+    "status",
+    "phase",
+    "started_at",
+    "finished_at",
+    "deadline_s"
+  ],
+  "title": "CouncilCycleDetail",
+  "type": "object"
+}
