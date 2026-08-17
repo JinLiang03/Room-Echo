@@ -1,0 +1,52 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+apps/web/dist/
+apps/web/coverage/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/blob-report/
+apps/web/perf-debug*.mjs
+
+# ESP-IDF build artifacts
+firmware/csi_tx/build/
+firmware/csi_rx/build/
+firmware/csi_tx/managed_components/
+firmware/csi_rx/managed_components/
+firmware/csi_tx/dependencies.lock
+firmware/csi_rx/dependencies.lock
+firmware/csi_tx/sdkconfig
+firmware/csi_rx/sdkconfig
+
+# Local configuration and secrets
+.env
+
+# Captured and derived sensing data (fixtures are committed)
+data/raw/*
+data/derived/*
+data/calibration/*
+!data/raw/.gitkeep
+!data/derived/.gitkeep
+!data/calibration/.gitkeep
+!data/calibration/demo_room_v1/
+data/calibration/demo_room_v1/*
+!data/calibration/demo_room_v1/profile.json
+!data/calibration/demo_room_v1/topology.json
+
+# OS noise
+.DS_Store
+
+# Generated handoff bundles and local audit captures
+artifacts/handoff/
+artifacts/web/audit-*.png

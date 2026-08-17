@@ -1,0 +1,88 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/agent_challenge.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "enum": [
+        "confound",
+        "missing_evidence",
+        "calibration_mismatch",
+        "causal_overreach",
+        "contradiction",
+        "stale_evidence"
+      ],
+      "title": "Category",
+      "type": "string"
+    },
+    "challenge_id": {
+      "minLength": 1,
+      "title": "Challenge Id",
+      "type": "string"
+    },
+    "challenger_agent_id": {
+      "minLength": 1,
+      "title": "Challenger Agent Id",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "proposed_severity": {
+      "enum": [
+        "info",
+        "material",
+        "blocking"
+      ],
+      "title": "Proposed Severity",
+      "type": "string"
+    },
+    "resolution_test": {
+      "minLength": 1,
+      "title": "Resolution Test",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "agent-challenge.v1",
+      "default": "agent-challenge.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "statement": {
+      "minLength": 1,
+      "title": "Statement",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "resolved",
+        "accepted",
+        "rejected_by_policy"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "target_claim_id": {
+      "minLength": 1,
+      "title": "Target Claim Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "challenge_id",
+    "target_claim_id",
+    "challenger_agent_id",
+    "category",
+    "proposed_severity",
+    "statement",
+    "resolution_test",
+    "status"
+  ],
+  "title": "AgentChallenge",
+  "type": "object"
+}

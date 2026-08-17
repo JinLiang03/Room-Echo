@@ -1,0 +1,265 @@
+{
+  "$defs": {
+    "DepthProbabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "far": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Far",
+          "type": "number"
+        },
+        "mid": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Mid",
+          "type": "number"
+        },
+        "near": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Near",
+          "type": "number"
+        },
+        "unknown": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Unknown",
+          "type": "number"
+        }
+      },
+      "required": [
+        "near",
+        "mid",
+        "far",
+        "unknown"
+      ],
+      "title": "DepthProbabilities",
+      "type": "object"
+    },
+    "DepthZone": {
+      "additionalProperties": false,
+      "description": "Propagation depth proxy — not metric distance.",
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "probabilities": {
+          "$ref": "#/$defs/DepthProbabilities"
+        },
+        "state": {
+          "enum": [
+            "near",
+            "mid",
+            "far",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "probabilities",
+        "state",
+        "confidence"
+      ],
+      "title": "DepthZone",
+      "type": "object"
+    },
+    "MotionSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "enum": [
+            "idle",
+            "micro_motion",
+            "moving",
+            "fast_change",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "value": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "value",
+        "state",
+        "confidence"
+      ],
+      "title": "MotionSignal",
+      "type": "object"
+    },
+    "OccupancyDensity": {
+      "additionalProperties": false,
+      "description": "Occupancy/obstruction density proxy — not a person count.",
+      "properties": {
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "probabilities": {
+          "$ref": "#/$defs/OccupancyProbabilities"
+        },
+        "state": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "probabilities",
+        "state",
+        "confidence"
+      ],
+      "title": "OccupancyDensity",
+      "type": "object"
+    },
+    "OccupancyProbabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "high": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "High",
+          "type": "number"
+        },
+        "low": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Low",
+          "type": "number"
+        },
+        "medium": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Medium",
+          "type": "number"
+        },
+        "unknown": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Unknown",
+          "type": "number"
+        }
+      },
+      "required": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "title": "OccupancyProbabilities",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/signal_triplet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The three calibrated proxies plus the sensor confidence cap.",
+  "properties": {
+    "depth_zone": {
+      "$ref": "#/$defs/DepthZone"
+    },
+    "ended_at": {
+      "format": "date-time",
+      "title": "Ended At",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "motion": {
+      "$ref": "#/$defs/MotionSignal"
+    },
+    "occupancy_density": {
+      "$ref": "#/$defs/OccupancyDensity"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sensor_confidence_cap": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Sensor Confidence Cap",
+      "type": "number"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "degraded",
+        "insufficient_signal",
+        "uncalibrated"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "window_id": {
+      "minLength": 1,
+      "title": "Window Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "session_id",
+    "window_id",
+    "source_mode",
+    "started_at",
+    "ended_at",
+    "motion",
+    "occupancy_density",
+    "depth_zone",
+    "sensor_confidence_cap",
+    "evidence_refs",
+    "status"
+  ],
+  "title": "SignalTriplet",
+  "type": "object"
+}

@@ -1,0 +1,307 @@
+{
+  "$defs": {
+    "AnalysisStep": {
+      "additionalProperties": false,
+      "description": "One visible reasoning step in an agent's analysis trace.",
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "observe",
+            "retrieve",
+            "map",
+            "reason",
+            "challenge",
+            "conclude"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "step_id": {
+          "minLength": 1,
+          "title": "Step Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_id",
+        "phase",
+        "title",
+        "text"
+      ],
+      "title": "AnalysisStep",
+      "type": "object"
+    },
+    "ReadingLayer": {
+      "additionalProperties": false,
+      "description": "One signal's systematic reading within a persona interpretation.",
+      "properties": {
+        "explanation": {
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "metaphor": {
+          "minLength": 1,
+          "title": "Metaphor",
+          "type": "string"
+        },
+        "signal": {
+          "enum": [
+            "motion",
+            "occupancy",
+            "depth"
+          ],
+          "title": "Signal",
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "signal",
+        "state",
+        "metaphor",
+        "explanation"
+      ],
+      "title": "ReadingLayer",
+      "type": "object"
+    },
+    "SystematicReading": {
+      "additionalProperties": false,
+      "description": "A structured, persona-voiced interpretation of the full evidence packet.\n\nEverything here is interpretation of calibrated proxy signals; no field\nmay quote a numeric measurement or claim sensor-equivalent perception.",
+      "properties": {
+        "boundary_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Boundary Notes",
+          "type": "array"
+        },
+        "headline": {
+          "minLength": 1,
+          "title": "Headline",
+          "type": "string"
+        },
+        "layers": {
+          "items": {
+            "$ref": "#/$defs/ReadingLayer"
+          },
+          "minItems": 1,
+          "title": "Layers",
+          "type": "array"
+        },
+        "multimodal_hints": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Multimodal Hints",
+          "type": "array"
+        },
+        "narrative": {
+          "minLength": 1,
+          "title": "Narrative",
+          "type": "string"
+        },
+        "scene_sketch": {
+          "minLength": 1,
+          "title": "Scene Sketch",
+          "type": "string"
+        }
+      },
+      "required": [
+        "headline",
+        "scene_sketch",
+        "layers",
+        "narrative"
+      ],
+      "title": "SystematicReading",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/agent_claim.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "agent_id": {
+      "minLength": 1,
+      "title": "Agent Id",
+      "type": "string"
+    },
+    "agent_version": {
+      "minLength": 1,
+      "title": "Agent Version",
+      "type": "string"
+    },
+    "alternative_explanations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Alternative Explanations",
+      "type": "array"
+    },
+    "analysis_steps": {
+      "items": {
+        "$ref": "#/$defs/AnalysisStep"
+      },
+      "title": "Analysis Steps",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "claim_id": {
+      "minLength": 1,
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "counter_evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Counter Evidence Refs",
+      "type": "array"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "falsification_test": {
+      "minLength": 1,
+      "title": "Falsification Test",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "observation",
+        "hypothesis",
+        "alternative",
+        "limitation"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "lens": {
+      "default": "sensor",
+      "enum": [
+        "sensor",
+        "metaphor"
+      ],
+      "title": "Lens",
+      "type": "string"
+    },
+    "process": {
+      "default": "",
+      "title": "Process",
+      "type": "string"
+    },
+    "proposition": {
+      "minLength": 1,
+      "title": "Proposition",
+      "type": "string"
+    },
+    "reasoning_summary": {
+      "minLength": 1,
+      "title": "Reasoning Summary",
+      "type": "string"
+    },
+    "role": {
+      "minLength": 1,
+      "title": "Role",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "agent-claim.v1",
+      "default": "agent-claim.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "stance": {
+      "enum": [
+        "supports",
+        "contradicts",
+        "neutral"
+      ],
+      "title": "Stance",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "proposed",
+        "challenged",
+        "revised",
+        "conceded",
+        "withdrawn",
+        "accepted"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "systematic_reading": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SystematicReading"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "claim_id",
+    "cycle_id",
+    "agent_id",
+    "agent_version",
+    "role",
+    "kind",
+    "state",
+    "proposition",
+    "stance",
+    "evidence_refs",
+    "falsification_test",
+    "reasoning_summary"
+  ],
+  "title": "AgentClaim",
+  "type": "object"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "feng_shui",
+  "lens": "metaphor",
+  "persona": {
+    "name": "青禾",
+    "glyph": "🏮",
+    "tagline": "读气的人:把空间当一场呼吸。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Feng Shui interpretation agent. All mappings are cultural-metaphor readings of calibrated proxy signals, never measurements.",
+  "entries": [
+    {
+      "concept": "qi (气) as environmental flow",
+      "source": "Empirical and quantitative studies of Feng Shui: a systematic review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/",
+      "relevance": "Qi is described as breath of nature / environmental flow; motion_intensity can be read as an abstract 'flow/activity of the space' metaphor.",
+      "rule": "motion_idle -> 气缓 (calm flow); motion_moving -> 气动 (active flow); motion_fast_change -> 气急 (agitated flow); motion_unknown -> 气机不明 (abstain)"
+    },
+    {
+      "concept": "藏风聚气 (sheltered wind, gathered qi)",
+      "source": "Zang Shu (Book of Burial), Guo Pu, cited in PMC systematic review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/",
+      "relevance": "Feng shui's original goal: site with shelter from wind and stable qi; occupancy/obstruction proxy maps to '聚气/阻塞' of the space metaphor.",
+      "rule": "occupancy_low -> 气散/开阔 (open); occupancy_medium -> 气聚渐成 (gathering); occupancy_high -> 气聚而滞 (congested); occupancy_unknown -> 局势不明 (abstain)"
+    },
+    {
+      "concept": "明堂远近 (bright hall distance)",
+      "source": "Han & Lo (2012) on Feng Shui site features, in PMC review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/",
+      "relevance": "Depth in feng shui is read as proximity of the 'front hall'; depth_zone_proxy maps to 近/中/远明堂.",
+      "rule": "depth_near -> 明堂近 (close hall); depth_mid -> 明堂中 (mid hall); depth_far -> 明堂远 (far hall); depth_unknown -> 朝向不明 (abstain)"
+    },
+    {
+      "concept": "wind field comfort as measurable environment",
+      "source": "Feng Shui environments had more comfortable wind fields (PMC review finding)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/",
+      "relevance": "Empirical studies link feng shui layout to air/sunlight comfort; cite as credibility that the metaphor has quantitative analogues.",
+      "rule": "only quote as metaphor; never claim actual wind or fortune"
+    },
+    {
+      "concept": "HRV/POMS indoor comfort study",
+      "source": "Is Fengshui a science or superstition? (Building and Environment)",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0360132321003966",
+      "relevance": "Indoor feng shui consideration correlated with more positive physiological/psychological responses; supports a 'harmony of space' reading, not measurement.",
+      "rule": "label every claim as 文化隐喻解读; no health or mood claims about actual people"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "skeptic",
+  "lens": "metaphor",
+  "persona": {
+    "name": "阿古",
+    "glyph": "🔍",
+    "tagline": "怀疑的人:可证伪,才可信。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Skeptic agent. Applies falsificationist method to every claim, especially metaphor overreach.",
+  "entries": [
+    {
+      "concept": "falsifiability and critical rationalism",
+      "source": "Karl Popper — Stanford Encyclopedia of Philosophy",
+      "url": "https://plato.stanford.edu/entries/popper/",
+      "relevance": "A claim must specify what observation would refute it; every alternative explanation needs a resolution test.",
+      "rule": "every challenge carries resolution_test; metaphor claims must state they are non-falsifiable as metaphor"
+    },
+    {
+      "concept": "conjecture and refutation",
+      "source": "Popper, Karl: Philosophy of Science (Internet Encyclopedia of Philosophy)",
+      "url": "https://iep.utm.edu/pop-sci/",
+      "relevance": "Scientific progress = bold conjecture + severe testing; skeptic proposes competing metaphors and demands tests.",
+      "rule": "propose at least one alternative metaphor; escalate to material/blocking when a claim exceeds evidence"
+    },
+    {
+      "concept": "critical rationalism",
+      "source": "Popper: Critical Rationalism (IEP)",
+      "url": "https://iep.utm.edu/karl-popper-critical-ratiotionalism/",
+      "relevance": "No authority, including a domain lens, is exempt from criticism; cross-examine all six lenses.",
+      "rule": "never defer to the proposer's lens; require evidence refs for every counter-claim"
+    }
+  ]
+}

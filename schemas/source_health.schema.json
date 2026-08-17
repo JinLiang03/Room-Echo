@@ -1,0 +1,84 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/source_health.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_links": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Active Links",
+      "type": "array"
+    },
+    "counters": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Counters",
+      "type": "object"
+    },
+    "degraded_links": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Degraded Links",
+      "type": "array"
+    },
+    "dropped_links": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Dropped Links",
+      "type": "array"
+    },
+    "epoch": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "source-health.v1",
+      "default": "source-health.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "degraded",
+        "stale",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "source_mode",
+    "status",
+    "updated_at"
+  ],
+  "title": "SourceHealth",
+  "type": "object"
+}

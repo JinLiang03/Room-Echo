@@ -1,0 +1,164 @@
+[
+  {
+    "calibration_profile_id": "demo_room_v1",
+    "end_ns": 2000000000,
+    "feature_version": "features-v1",
+    "links": {
+      "rx-a": {
+        "amplitude_anomaly_ratio": 0.0,
+        "amplitude_mad": [
+          0.01,
+          0.012,
+          0.011,
+          0.013,
+          0.012,
+          0.01
+        ],
+        "amplitude_median": [
+          0.9,
+          0.91,
+          0.92,
+          0.9,
+          0.88,
+          0.87
+        ],
+        "packet_coverage": 0.99,
+        "quality_flags": [],
+        "robust_variance": 0.0,
+        "shape_correlation_to_baseline": 0.98,
+        "spectral_band_energy": {
+          "0-1Hz": 0.02,
+          "1-4Hz": 0.01,
+          "4-8Hz": 0.005
+        },
+        "spectral_entropy": 0.0,
+        "subcarrier_coverage": 0.98,
+        "temporal_diff_rms": 0.008,
+        "valid_carrier_ratio": 1.0
+      },
+      "rx-b": {
+        "amplitude_anomaly_ratio": 0.0,
+        "amplitude_mad": [
+          0.01,
+          0.012,
+          0.011,
+          0.013,
+          0.012,
+          0.01
+        ],
+        "amplitude_median": [
+          0.9,
+          0.91,
+          0.92,
+          0.9,
+          0.88,
+          0.87
+        ],
+        "packet_coverage": 0.98,
+        "quality_flags": [],
+        "robust_variance": 0.0,
+        "shape_correlation_to_baseline": 0.97,
+        "spectral_band_energy": {
+          "0-1Hz": 0.02,
+          "1-4Hz": 0.01,
+          "4-8Hz": 0.005
+        },
+        "spectral_entropy": 0.0,
+        "subcarrier_coverage": 0.98,
+        "temporal_diff_rms": 0.009,
+        "valid_carrier_ratio": 1.0
+      }
+    },
+    "paired": null,
+    "paired_packet_coverage": 0.95,
+    "quality": null,
+    "schema_version": "1.0.0",
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "start_ns": 0,
+    "stride_ms": 250,
+    "topology_hash": "sha256:4f2d840e487de89a6834f0fdf4414db600bf03ccb2aa95a64238fe3903865a39",
+    "window_id": "window-0001-calm"
+  },
+  {
+    "calibration_profile_id": "demo_room_v1",
+    "end_ns": 4250000000,
+    "feature_version": "features-v1",
+    "links": {
+      "rx-a": {
+        "amplitude_anomaly_ratio": 0.0,
+        "amplitude_mad": [
+          0.01,
+          0.012,
+          0.011,
+          0.013,
+          0.012,
+          0.01
+        ],
+        "amplitude_median": [
+          0.9,
+          0.91,
+          0.92,
+          0.9,
+          0.88,
+          0.87
+        ],
+        "packet_coverage": 0.97,
+        "quality_flags": [],
+        "robust_variance": 0.0,
+        "shape_correlation_to_baseline": 0.55,
+        "spectral_band_energy": {
+          "0-1Hz": 0.02,
+          "1-4Hz": 0.01,
+          "4-8Hz": 0.005
+        },
+        "spectral_entropy": 0.0,
+        "subcarrier_coverage": 0.98,
+        "temporal_diff_rms": 0.31,
+        "valid_carrier_ratio": 1.0
+      },
+      "rx-b": {
+        "amplitude_anomaly_ratio": 0.0,
+        "amplitude_mad": [
+          0.01,
+          0.012,
+          0.011,
+          0.013,
+          0.012,
+          0.01
+        ],
+        "amplitude_median": [
+          0.9,
+          0.91,
+          0.92,
+          0.9,
+          0.88,
+          0.87
+        ],
+        "packet_coverage": 0.96,
+        "quality_flags": [],
+        "robust_variance": 0.0,
+        "shape_correlation_to_baseline": 0.61,
+        "spectral_band_energy": {
+          "0-1Hz": 0.02,
+          "1-4Hz": 0.01,
+          "4-8Hz": 0.005
+        },
+        "spectral_entropy": 0.0,
+        "subcarrier_coverage": 0.98,
+        "temporal_diff_rms": 0.27,
+        "valid_carrier_ratio": 1.0
+      }
+    },
+    "paired": null,
+    "paired_packet_coverage": 0.93,
+    "quality": null,
+    "schema_version": "1.0.0",
+    "session_id": "session-mock-fixed-v1",
+    "source_mode": "mock",
+    "start_ns": 2250000000,
+    "stride_ms": 250,
+    "topology_hash": "sha256:4f2d840e487de89a6834f0fdf4414db600bf03ccb2aa95a64238fe3903865a39",
+    "window_id": "window-0002-moving"
+  }
+]

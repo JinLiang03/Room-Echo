@@ -1,0 +1,51 @@
+[
+  {
+    "accepted_claim_ids": [
+      "claim-0001"
+    ],
+    "alternatives": [
+      "无线干扰或结构变化也可能形成此意象"
+    ],
+    "audio_parameters": {
+      "enabled": "false",
+      "tone": "neutral"
+    },
+    "cycle_id": "cycle-0001",
+    "display_confidence": 0.8,
+    "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+    "headline": "多视角受限解读",
+    "interpretation_agreement": {
+      "agreement_ratio": 0.5,
+      "contradicting": 0,
+      "participants": 2,
+      "supporting": 1,
+      "unresolved_challenges": 0
+    },
+    "limitations": [
+      "隐喻解读不等于测量;代理信号,非影像或人数"
+    ],
+    "model_support": 0.8,
+    "provenance": {
+      "agent_versions": {
+        "feng_shui": "mock-council.v1"
+      },
+      "calibration_profile_id": "demo_room_v1",
+      "contracts_version": "1.0.0",
+      "features_version": "features-v2",
+      "generated_at": "2026-08-06T08:00:05Z",
+      "models": {
+        "feng_shui": "mock"
+      },
+      "policy_version": "policy-v1"
+    },
+    "schema_version": "council-result.v1",
+    "sensor_confidence_cap": 0.8,
+    "status": "supported",
+    "summary": "专家主张引用同一证据包,无未解决质疑. ",
+    "unresolved_challenge_ids": [],
+    "visual_parameters": {
+      "palette": "proxy_blue",
+      "shape": "rings"
+    }
+  }
+]

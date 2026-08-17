@@ -1,0 +1,141 @@
+[
+  {
+    "agent_id": "agent-feng_shui-0001",
+    "agent_version": "mock-council.v1",
+    "alternative_explanations": [
+      "无线干扰或结构变化也可能形成此意象"
+    ],
+    "analysis_steps": [
+      {
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state",
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/occupancy/state",
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/depth/state"
+        ],
+        "phase": "observe",
+        "step_id": "observe",
+        "text": "读取证据包标量: motion=micro_motion, occupancy=low, depth=near; 仅引用标量,未读取 raw CSI。",
+        "title": "观察信号"
+      },
+      {
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status"
+        ],
+        "phase": "retrieve",
+        "step_id": "retrieve",
+        "text": "从知识库命中主概念『qi (气) as environmental flow』(Empirical and quantitative studies of Feng Shui); 备用视角『藏风聚气』。",
+        "title": "检索知识库"
+      },
+      {
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+        ],
+        "phase": "map",
+        "step_id": "map",
+        "text": "motion_micro_motion -> 气动; occupancy_low -> 气散/开阔; depth_near -> 明堂近",
+        "title": "意象映射"
+      },
+      {
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/overall_status"
+        ],
+        "phase": "reason",
+        "step_id": "reason",
+        "text": "把三种标量读成同一场气的三种侧面:流、聚、远近。读法成立的前提是标定与拓扑未变。",
+        "title": "推理"
+      },
+      {
+        "evidence_refs": [
+          "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+        ],
+        "phase": "conclude",
+        "step_id": "conclude",
+        "text": "收敛为命题: 以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读)。",
+        "title": "结论"
+      }
+    ],
+    "assumptions": [
+      "标定 profile 与当前拓扑匹配"
+    ],
+    "claim_id": "claim-0001",
+    "counter_evidence_refs": [],
+    "cycle_id": "cycle-0001",
+    "evidence_refs": [
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/value",
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/motion/state"
+    ],
+    "falsification_test": "更换标定/拓扑后若意象不重现则推翻. ",
+    "kind": "observation",
+    "lens": "metaphor",
+    "process": "",
+    "proposition": "以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读). ",
+    "reasoning_summary": "仅引用证据包标量,按知识库概念做隐喻映射. ",
+    "role": "feng_shui",
+    "schema_version": "agent-claim.v1",
+    "sources": [
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC10558748/"
+    ],
+    "stance": "supports",
+    "state": "proposed",
+    "systematic_reading": {
+      "boundary_notes": [
+        "气、明堂、吉凶都是文化隐喻,不代表真实气流或运势。",
+        "本解读不产生任何测量值,也不改变传感器置信。"
+      ],
+      "headline": "以[qi (气) as environmental flow]视角解读当前空间意象(隐喻解读)。",
+      "layers": [
+        {
+          "explanation": "气流意象读作「微动」:运动标量描述的是代理变化,不是任何个体的具体动作。",
+          "metaphor": "气动",
+          "signal": "motion",
+          "state": "micro_motion"
+        },
+        {
+          "explanation": "气局意象读作「疏朗」:占用密度描述遮挡与空间充盈度,不是人数。",
+          "metaphor": "气散/开阔",
+          "signal": "occupancy",
+          "state": "low"
+        },
+        {
+          "explanation": "明堂远近读作「近前」:纵深是相对层级,不是米制距离。",
+          "metaphor": "明堂近",
+          "signal": "depth",
+          "state": "near"
+        }
+      ],
+      "multimodal_hints": [
+        "若接入声学模态,可对照环境声级与“气动”意象是否一致,但需独立标定。",
+        "若接入温湿度/光照模态,可验证风感意象与通风条件的相关性;仍属隐喻对照。"
+      ],
+      "narrative": "按青禾的读法,这间房的气是缓的、散的、近的:气流意象读作「微动」,气局意象读作「疏朗」,明堂远近读作「近前」。这不是占卜,也不是对命运的判断;只是把标量读成一场呼吸。",
+      "scene_sketch": "如果此刻有风,它会在近前慢慢转向;空气带着疏朗的密度,安静得像一场刚醒的呼吸。气不急着聚,也不急着散,整个房间像一张还没落定的棋局。"
+    }
+  },
+  {
+    "agent_id": "agent-architecture-0002",
+    "agent_version": "mock-council.v1",
+    "alternative_explanations": [],
+    "analysis_steps": [],
+    "assumptions": [],
+    "claim_id": "claim-0002",
+    "counter_evidence_refs": [],
+    "cycle_id": "cycle-0001",
+    "evidence_refs": [
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/signals/depth/state"
+    ],
+    "falsification_test": "无可证伪性要求(限制性说明). ",
+    "kind": "limitation",
+    "lens": "metaphor",
+    "process": "",
+    "proposition": "空间层级为相对代理,不提供米制距离(隐喻解读). ",
+    "reasoning_summary": "重申隐喻与测量边界. ",
+    "role": "architecture",
+    "schema_version": "agent-claim.v1",
+    "sources": [
+      "https://cup.columbia.edu/book/proxemics-and-the-architecture-of-social-interaction/9781941"
+    ],
+    "stance": "neutral",
+    "state": "proposed",
+    "systematic_reading": null
+  }
+]

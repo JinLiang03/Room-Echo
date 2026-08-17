@@ -1,0 +1,2 @@
+{"emitted_at": "2026-08-06T08:00:00+00:00", "event_type": "session.started", "payload": {"source_mode": "mock"}, "schema_version": "replay-event.v1", "session_id": "walk_through"}
+{"emitted_at": "2026-08-06T08:00:00+00:00", "event_type": "session.stopped", "payload": {"frames_recorded": 2000}, "schema_version": "replay-event.v1", "session_id": "walk_through"}

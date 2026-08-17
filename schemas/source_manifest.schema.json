@@ -1,0 +1,74 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/source_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Identifies where a session's data came from and under what topology.",
+  "properties": {
+    "firmware_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Firmware Versions",
+      "type": "object"
+    },
+    "link_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Link Ids",
+      "type": "array"
+    },
+    "replay_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Replay Ref"
+    },
+    "schema_version": {
+      "const": "wifi-source.v1",
+      "default": "wifi-source.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "session_started_at": {
+      "format": "date-time",
+      "title": "Session Started At",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "topology_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Topology Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "source_mode",
+    "session_started_at",
+    "link_ids",
+    "topology_hash"
+  ],
+  "title": "SourceManifest",
+  "type": "object"
+}
