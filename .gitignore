@@ -50,3 +50,4 @@ data/calibration/demo_room_v1/*
 # Generated handoff bundles and local audit captures
 artifacts/handoff/
 artifacts/web/audit-*.png
+firmware/build/
