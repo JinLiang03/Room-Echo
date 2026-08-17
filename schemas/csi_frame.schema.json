@@ -1,0 +1,192 @@
+{
+  "$defs": {
+    "CsiQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "parse_ok": {
+          "title": "Parse Ok",
+          "type": "boolean"
+        },
+        "sequence_gap": {
+          "minimum": 0,
+          "title": "Sequence Gap",
+          "type": "integer"
+        },
+        "timestamp_monotonic": {
+          "title": "Timestamp Monotonic",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "parse_ok",
+        "sequence_gap",
+        "timestamp_monotonic"
+      ],
+      "title": "CsiQuality",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/csi_frame.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A validated CSI frame in host time; the raw fact consumed by the pipeline.",
+  "properties": {
+    "bandwidth_mhz": {
+      "enum": [
+        20,
+        40
+      ],
+      "title": "Bandwidth Mhz",
+      "type": "integer"
+    },
+    "channel": {
+      "maximum": 196,
+      "minimum": 1,
+      "title": "Channel",
+      "type": "integer"
+    },
+    "csi_iq": {
+      "items": {
+        "maximum": 127,
+        "minimum": -128,
+        "type": "integer"
+      },
+      "minItems": 2,
+      "title": "Csi Iq",
+      "type": "array"
+    },
+    "device_ts_us": {
+      "minimum": 0,
+      "title": "Device Ts Us",
+      "type": "integer"
+    },
+    "first_word_invalid": {
+      "default": false,
+      "title": "First Word Invalid",
+      "type": "boolean"
+    },
+    "host_ts_ns": {
+      "minimum": 0,
+      "title": "Host Ts Ns",
+      "type": "integer"
+    },
+    "link_id": {
+      "minLength": 1,
+      "title": "Link Id",
+      "type": "string"
+    },
+    "ltf_mode": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ltf Mode"
+    },
+    "noise_floor_dbm": {
+      "title": "Noise Floor Dbm",
+      "type": "number"
+    },
+    "quality": {
+      "$ref": "#/$defs/CsiQuality"
+    },
+    "rate": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rate"
+    },
+    "rssi_dbm": {
+      "title": "Rssi Dbm",
+      "type": "number"
+    },
+    "rx_id": {
+      "minLength": 1,
+      "title": "Rx Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "secondary_channel": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Secondary Channel"
+    },
+    "seq": {
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "tx_id_hash": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tx Id Hash"
+    }
+  },
+  "required": [
+    "session_id",
+    "source_mode",
+    "link_id",
+    "rx_id",
+    "seq",
+    "device_ts_us",
+    "host_ts_ns",
+    "channel",
+    "bandwidth_mhz",
+    "rssi_dbm",
+    "noise_floor_dbm",
+    "csi_iq",
+    "quality"
+  ],
+  "title": "NormalizedCsiFrame",
+  "type": "object"
+}

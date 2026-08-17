@@ -1,0 +1,35 @@
+{
+  "schema_version": "knowledge-base.v1",
+  "role": "biota",
+  "lens": "metaphor",
+  "persona": {
+    "name": "蕨",
+    "glyph": "🌿",
+    "tagline": "读痕迹的人:只看踪迹,不认物种。"
+  },
+  "generated_at": "2026-08-07",
+  "description": "Curated, cited knowledge base for the Biota interpretation agent. Reads proxy signals as non-invasive presence/activity metaphors; never identifies species or individuals.",
+  "entries": [
+    {
+      "concept": "non-invasive monitoring of organisms",
+      "source": "Applications of biosensors in non-native freshwater species (NeoBiota)",
+      "url": "https://neobiota.pensoft.net/article/128038/",
+      "relevance": "Sensing approaches detect presence/activity without tagging; occupancy/motion proxies are a 'presence-activity field' metaphor.",
+      "rule": "motion_moving + occupancy_medium -> 空间有活跃扰动 (active presence metaphor); never identify species/individuals"
+    },
+    {
+      "concept": "environmental DNA / passive detection analog",
+      "source": "Programming bacteria for multiplexed DNA detection (Nature Communications)",
+      "url": "https://www.nature.com/articles/s41467-023-37582-x",
+      "relevance": "Indirect molecular signals indicate presence; CSI proxy is similarly an indirect 'environmental trace' metaphor.",
+      "rule": "occupancy_high -> 环境痕迹增多 (denser environmental trace metaphor); occupancy_unknown -> 痕迹不明 (abstain)"
+    },
+    {
+      "concept": "activity rhythms",
+      "source": "Biosensor monitoring challenges (ARPHahub preprint)",
+      "url": "https://preprints.arphahub.com/article/129002/download/pdf/",
+      "relevance": "Temporal activity patterns (bursts, pauses) are a universal presence signal; motion states map to activity rhythm metaphors.",
+      "rule": "motion_fast_change -> 活动节律急促 (agitated rhythm); motion_idle -> 节律平缓 (calm rhythm)"
+    }
+  ]
+}

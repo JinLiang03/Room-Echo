@@ -1,0 +1,74 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/policy_rejection.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A deterministic arbiter rejection; agents never write these themselves.",
+  "properties": {
+    "agent_id": {
+      "minLength": 1,
+      "title": "Agent Id",
+      "type": "string"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "detail": {
+      "minLength": 1,
+      "title": "Detail",
+      "type": "string"
+    },
+    "reason_code": {
+      "minLength": 1,
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "rejected_at": {
+      "format": "date-time",
+      "title": "Rejected At",
+      "type": "string"
+    },
+    "rejection_id": {
+      "minLength": 1,
+      "title": "Rejection Id",
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "architecture",
+        "biota",
+        "feng_shui",
+        "psyche",
+        "soundscape",
+        "skeptic",
+        "fusion"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "policy-rejection.v1",
+      "default": "policy-rejection.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_id": {
+      "minLength": 1,
+      "title": "Target Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "rejection_id",
+    "cycle_id",
+    "target_id",
+    "agent_id",
+    "role",
+    "reason_code",
+    "detail",
+    "rejected_at"
+  ],
+  "title": "PolicyRejection",
+  "type": "object"
+}

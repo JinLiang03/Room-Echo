@@ -1,0 +1,233 @@
+{
+  "$defs": {
+    "AgreementSummary": {
+      "additionalProperties": false,
+      "description": "How many agents agreed; never feeds the confidence formula.",
+      "properties": {
+        "agreement_ratio": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Agreement Ratio",
+          "type": "number"
+        },
+        "contradicting": {
+          "minimum": 0,
+          "title": "Contradicting",
+          "type": "integer"
+        },
+        "participants": {
+          "minimum": 0,
+          "title": "Participants",
+          "type": "integer"
+        },
+        "supporting": {
+          "minimum": 0,
+          "title": "Supporting",
+          "type": "integer"
+        },
+        "unresolved_challenges": {
+          "minimum": 0,
+          "title": "Unresolved Challenges",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "participants",
+        "supporting",
+        "contradicting",
+        "unresolved_challenges",
+        "agreement_ratio"
+      ],
+      "title": "AgreementSummary",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Agent Versions",
+          "type": "object"
+        },
+        "calibration_profile_id": {
+          "minLength": 1,
+          "title": "Calibration Profile Id",
+          "type": "string"
+        },
+        "contracts_version": {
+          "minLength": 1,
+          "title": "Contracts Version",
+          "type": "string"
+        },
+        "features_version": {
+          "minLength": 1,
+          "title": "Features Version",
+          "type": "string"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "models": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Models",
+          "type": "object"
+        },
+        "policy_version": {
+          "minLength": 1,
+          "title": "Policy Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "contracts_version",
+        "features_version",
+        "calibration_profile_id",
+        "policy_version",
+        "generated_at"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/council_result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Final synthesis. display_confidence is bounded by the sensor cap.",
+  "properties": {
+    "accepted_claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Accepted Claim Ids",
+      "type": "array"
+    },
+    "alternatives": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Alternatives",
+      "type": "array"
+    },
+    "audio_parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Audio Parameters",
+      "type": "object"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "display_confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Display Confidence",
+      "type": "number"
+    },
+    "evidence_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Evidence Hash",
+      "type": "string"
+    },
+    "headline": {
+      "minLength": 1,
+      "title": "Headline",
+      "type": "string"
+    },
+    "interpretation_agreement": {
+      "$ref": "#/$defs/AgreementSummary"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "model_support": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Model Support",
+      "type": "number"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "schema_version": {
+      "const": "council-result.v1",
+      "default": "council-result.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sensor_confidence_cap": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Sensor Confidence Cap",
+      "type": "number"
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "ambiguous",
+        "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+    },
+    "unresolved_challenge_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Challenge Ids",
+      "type": "array"
+    },
+    "visual_parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Visual Parameters",
+      "type": "object"
+    }
+  },
+  "required": [
+    "cycle_id",
+    "evidence_hash",
+    "status",
+    "headline",
+    "summary",
+    "sensor_confidence_cap",
+    "model_support",
+    "display_confidence",
+    "interpretation_agreement",
+    "provenance"
+  ],
+  "title": "CouncilResult",
+  "type": "object"
+}

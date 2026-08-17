@@ -1,0 +1,140 @@
+{
+  "$id": "https://wifi-spatial-council.local/schemas/council_call_record.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One provider call (or cache hit), with observable usage only.",
+  "properties": {
+    "attempts": {
+      "minimum": 1,
+      "title": "Attempts",
+      "type": "integer"
+    },
+    "call_id": {
+      "minLength": 1,
+      "title": "Call Id",
+      "type": "string"
+    },
+    "cycle_id": {
+      "minLength": 1,
+      "title": "Cycle Id",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "evidence_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Evidence Hash",
+      "type": "string"
+    },
+    "input_tokens": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Input Tokens",
+      "type": "integer"
+    },
+    "latency_ms": {
+      "minimum": 0,
+      "title": "Latency Ms",
+      "type": "integer"
+    },
+    "model": {
+      "minLength": 1,
+      "title": "Model",
+      "type": "string"
+    },
+    "output_tokens": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Output Tokens",
+      "type": "integer"
+    },
+    "phase": {
+      "enum": [
+        "propose",
+        "cross_examine",
+        "respond",
+        "synthesize"
+      ],
+      "title": "Phase",
+      "type": "string"
+    },
+    "prompt_version": {
+      "minLength": 1,
+      "title": "Prompt Version",
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "architecture",
+        "biota",
+        "feng_shui",
+        "psyche",
+        "soundscape",
+        "skeptic",
+        "fusion"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "council-call.v1",
+      "default": "council-call.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "retry",
+        "timeout",
+        "error",
+        "offline",
+        "cache_hit"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "total_tokens": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Total Tokens",
+      "type": "integer"
+    },
+    "trace_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Trace Id"
+    }
+  },
+  "required": [
+    "call_id",
+    "cycle_id",
+    "role",
+    "phase",
+    "model",
+    "prompt_version",
+    "evidence_hash",
+    "status",
+    "latency_ms",
+    "attempts"
+  ],
+  "title": "CouncilCallRecord",
+  "type": "object"
+}

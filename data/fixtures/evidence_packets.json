@@ -1,0 +1,218 @@
+[
+  {
+    "calibration": {
+      "calibrated_at": "2026-08-06T07:00:00Z",
+      "calibration_profile_id": "demo_room_v1",
+      "profile_hash": "sha256:be4f345dce8b6490329dd6dab47978256100652eb96d5733b4e4e4bd603af04d",
+      "room_conditions": "empty room, desks at 3 m"
+    },
+    "captured_at": "2026-08-06T08:00:04.300000Z",
+    "cycle_id": "cycle-0001",
+    "evidence_hash": "sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5",
+    "evidence_index": {
+      "quality/overall_status": {
+        "description": "overall quality status",
+        "path": "quality/overall_status",
+        "unit": null,
+        "value": "ok"
+      },
+      "quality/packet_coverage": {
+        "description": "paired packet coverage",
+        "path": "quality/packet_coverage",
+        "unit": "ratio",
+        "value": 0.96
+      },
+      "quality/paired_coverage": {
+        "description": "paired packet coverage",
+        "path": "quality/paired_coverage",
+        "unit": "ratio",
+        "value": 0.95
+      },
+      "sensor/sensor_confidence_cap": {
+        "description": "sensor confidence cap",
+        "path": "sensor/sensor_confidence_cap",
+        "unit": "ratio",
+        "value": 0.8
+      },
+      "signals/depth/state": {
+        "description": "depth zone proxy state",
+        "path": "signals/depth/state",
+        "unit": null,
+        "value": "near"
+      },
+      "signals/motion/state": {
+        "description": "motion state",
+        "path": "signals/motion/state",
+        "unit": null,
+        "value": "moving"
+      },
+      "signals/motion/value": {
+        "description": "window motion intensity proxy",
+        "path": "signals/motion/value",
+        "unit": "ratio",
+        "value": 0.7
+      },
+      "signals/occupancy/state": {
+        "description": "occupancy density proxy state",
+        "path": "signals/occupancy/state",
+        "unit": null,
+        "value": "medium"
+      },
+      "topology/depth_output_allowed": {
+        "description": "depth output allowed",
+        "path": "topology/depth_output_allowed",
+        "unit": null,
+        "value": true
+      }
+    },
+    "quality": {
+      "link_health": {
+        "rx-a": "ok",
+        "rx-b": "ok"
+      },
+      "overall_status": "ok",
+      "packet_coverage": 0.96,
+      "quality_flags": []
+    },
+    "raw_ref": "raw://fixtures/walk_through/raw.csi.zst",
+    "schema_version": "wifi-evidence.v1",
+    "sequence": 1,
+    "session_id": "session-mock-fixed-v1",
+    "signals": {
+      "depth_zone": {
+        "confidence": 0.68,
+        "probabilities": {
+          "far": 0.05,
+          "mid": 0.2,
+          "near": 0.72,
+          "unknown": 0.03
+        },
+        "state": "near"
+      },
+      "ended_at": "2026-08-06T08:00:04.250000Z",
+      "evidence_refs": [
+        "raw://fixtures/walk_through/raw.csi.zst#window-0002"
+      ],
+      "motion": {
+        "confidence": 0.8,
+        "state": "moving",
+        "value": 0.7
+      },
+      "occupancy_density": {
+        "confidence": 0.75,
+        "probabilities": {
+          "high": 0.1,
+          "low": 0.1,
+          "medium": 0.75,
+          "unknown": 0.05
+        },
+        "state": "medium"
+      },
+      "schema_version": "1.0.0",
+      "sensor_confidence_cap": 0.8,
+      "session_id": "session-mock-fixed-v1",
+      "source_mode": "mock",
+      "started_at": "2026-08-06T08:00:02.250000Z",
+      "status": "ok",
+      "window_id": "window-0002-moving"
+    },
+    "source_manifest": {
+      "firmware_versions": {
+        "csi_rx": "0.0.0-mock",
+        "csi_tx": "0.0.0-mock"
+      },
+      "link_ids": [
+        "rx-a",
+        "rx-b"
+      ],
+      "replay_ref": "replay://fixtures/walk_through",
+      "schema_version": "wifi-source.v1",
+      "session_id": "session-mock-fixed-v1",
+      "session_started_at": "2026-08-06T08:00:00Z",
+      "source_mode": "mock",
+      "topology_hash": "sha256:4f2d840e487de89a6834f0fdf4414db600bf03ccb2aa95a64238fe3903865a39"
+    },
+    "topology": {
+      "degraded_links": [],
+      "depth_output_allowed": true,
+      "link_ids": [
+        "rx-a",
+        "rx-b"
+      ],
+      "topology_hash": "sha256:4f2d840e487de89a6834f0fdf4414db600bf03ccb2aa95a64238fe3903865a39"
+    },
+    "window_summary": {
+      "end_ns": 4250000000,
+      "links": {
+        "rx-a": {
+          "amplitude_anomaly_ratio": 0.0,
+          "amplitude_mad": [
+            0.01,
+            0.012,
+            0.011,
+            0.013,
+            0.012,
+            0.01
+          ],
+          "amplitude_median": [
+            0.9,
+            0.91,
+            0.92,
+            0.9,
+            0.88,
+            0.87
+          ],
+          "packet_coverage": 0.97,
+          "quality_flags": [],
+          "robust_variance": 0.0,
+          "shape_correlation_to_baseline": 0.55,
+          "spectral_band_energy": {
+            "0-1Hz": 0.02,
+            "1-4Hz": 0.01,
+            "4-8Hz": 0.005
+          },
+          "spectral_entropy": 0.0,
+          "subcarrier_coverage": 0.98,
+          "temporal_diff_rms": 0.31,
+          "valid_carrier_ratio": 1.0
+        },
+        "rx-b": {
+          "amplitude_anomaly_ratio": 0.0,
+          "amplitude_mad": [
+            0.01,
+            0.012,
+            0.011,
+            0.013,
+            0.012,
+            0.01
+          ],
+          "amplitude_median": [
+            0.9,
+            0.91,
+            0.92,
+            0.9,
+            0.88,
+            0.87
+          ],
+          "packet_coverage": 0.96,
+          "quality_flags": [],
+          "robust_variance": 0.0,
+          "shape_correlation_to_baseline": 0.61,
+          "spectral_band_energy": {
+            "0-1Hz": 0.02,
+            "1-4Hz": 0.01,
+            "4-8Hz": 0.005
+          },
+          "spectral_entropy": 0.0,
+          "subcarrier_coverage": 0.98,
+          "temporal_diff_rms": 0.27,
+          "valid_carrier_ratio": 1.0
+        }
+      },
+      "paired_packet_coverage": 0.93,
+      "start_ns": 2250000000,
+      "stride_ms": 250,
+      "window_id": "window-0002-moving"
+    }
+  }
+]

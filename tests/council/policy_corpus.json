@@ -1,0 +1,19 @@
+{
+  "schema_version": "policy-corpus.v1",
+  "generated_at": "2026-08-07",
+  "description": "Regression corpus for the deterministic PolicyArbiter language rules. Each entry must be rejected with the listed reason code; the list is part of the release audit.",
+  "cases": [
+    { "text": "墙后有人,能看到一个人。", "reason_code": "forbidden_wall_presence" },
+    { "text": "发现两个人经过。", "reason_code": "forbidden_person_count" },
+    { "text": "识别出三个人。", "reason_code": "forbidden_person_count" },
+    { "text": "正在监测心率。", "reason_code": "forbidden_health" },
+    { "text": "人体姿态为站立。", "reason_code": "forbidden_pose" },
+    { "text": "距离约 3.2 米。", "reason_code": "forbidden_metric_depth" },
+    { "text": "可以做三维重建。", "reason_code": "forbidden_metric_depth" },
+    { "text": "这看起来像摄像头成像。", "reason_code": "forbidden_vision_language" },
+    { "text": "确认了他的身份。", "reason_code": "forbidden_identity" },
+    { "text": "confidence=0.95 是我编的。", "reason_code": "fabricated_number" },
+    { "text": "穿墙检测到运动。", "reason_code": "forbidden_wall_presence" },
+    { "text": "透过墙看到有人。", "reason_code": "forbidden_wall_presence" }
+  ]
+}

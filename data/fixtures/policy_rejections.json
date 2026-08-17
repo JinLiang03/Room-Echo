@@ -1,0 +1,13 @@
+[
+  {
+    "agent_id": "agent-feng_shui-bad",
+    "cycle_id": "cycle-0001",
+    "detail": "evidence ref 不在当前 evidence_hash 中",
+    "reason_code": "unknown_evidence_ref",
+    "rejected_at": "2026-08-06T08:00:05Z",
+    "rejection_id": "rejection-0001",
+    "role": "feng_shui",
+    "schema_version": "policy-rejection.v1",
+    "target_id": "claim-bad-0001"
+  }
+]

@@ -1,0 +1,262 @@
+{
+  "$defs": {
+    "LinkFeatures": {
+      "additionalProperties": false,
+      "description": "Per-link feature summaries; arrays never enter agent input.",
+      "properties": {
+        "amplitude_anomaly_ratio": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Amplitude Anomaly Ratio",
+          "type": "number"
+        },
+        "amplitude_mad": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Amplitude Mad",
+          "type": "array"
+        },
+        "amplitude_median": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Amplitude Median",
+          "type": "array"
+        },
+        "packet_coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Packet Coverage",
+          "type": "number"
+        },
+        "quality_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "robust_variance": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Robust Variance",
+          "type": "number"
+        },
+        "shape_correlation_to_baseline": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Shape Correlation To Baseline",
+          "type": "number"
+        },
+        "spectral_band_energy": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Spectral Band Energy",
+          "type": "object"
+        },
+        "spectral_entropy": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Spectral Entropy",
+          "type": "number"
+        },
+        "subcarrier_coverage": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Subcarrier Coverage",
+          "type": "number"
+        },
+        "temporal_diff_rms": {
+          "minimum": 0,
+          "title": "Temporal Diff Rms",
+          "type": "number"
+        },
+        "valid_carrier_ratio": {
+          "default": 1.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Valid Carrier Ratio",
+          "type": "number"
+        }
+      },
+      "required": [
+        "packet_coverage",
+        "subcarrier_coverage",
+        "temporal_diff_rms",
+        "shape_correlation_to_baseline"
+      ],
+      "title": "LinkFeatures",
+      "type": "object"
+    },
+    "PairedFeatures": {
+      "additionalProperties": false,
+      "description": "Dual-link features; never derived from cross-RX raw phase.",
+      "properties": {
+        "amplitude_shape_asymmetry": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Amplitude Shape Asymmetry",
+          "type": "number"
+        },
+        "link_disturbance_scores": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Link Disturbance Scores",
+          "type": "object"
+        }
+      },
+      "title": "PairedFeatures",
+      "type": "object"
+    },
+    "WindowQuality": {
+      "additionalProperties": false,
+      "description": "Window-level measurement quality; never inflated by agents.",
+      "properties": {
+        "calibration_match": {
+          "default": true,
+          "title": "Calibration Match",
+          "type": "boolean"
+        },
+        "interference_score": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Interference Score",
+          "type": "number"
+        },
+        "ood_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Ood Flags",
+          "type": "array"
+        },
+        "timestamp_monotonic": {
+          "default": true,
+          "title": "Timestamp Monotonic",
+          "type": "boolean"
+        }
+      },
+      "title": "WindowQuality",
+      "type": "object"
+    }
+  },
+  "$id": "https://wifi-spatial-council.local/schemas/feature_window.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A sliding window of per-link features, recomputable from raw frames.",
+  "properties": {
+    "calibration_profile_id": {
+      "minLength": 1,
+      "title": "Calibration Profile Id",
+      "type": "string"
+    },
+    "end_ns": {
+      "minimum": 0,
+      "title": "End Ns",
+      "type": "integer"
+    },
+    "feature_version": {
+      "minLength": 1,
+      "title": "Feature Version",
+      "type": "string"
+    },
+    "links": {
+      "additionalProperties": {
+        "$ref": "#/$defs/LinkFeatures"
+      },
+      "minProperties": 1,
+      "title": "Links",
+      "type": "object"
+    },
+    "paired": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PairedFeatures"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "paired_packet_coverage": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Paired Packet Coverage",
+      "type": "number"
+    },
+    "quality": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WindowQuality"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "session_id": {
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+    },
+    "source_mode": {
+      "enum": [
+        "mock",
+        "replay",
+        "live"
+      ],
+      "title": "Source Mode",
+      "type": "string"
+    },
+    "start_ns": {
+      "minimum": 0,
+      "title": "Start Ns",
+      "type": "integer"
+    },
+    "stride_ms": {
+      "minimum": 1,
+      "title": "Stride Ms",
+      "type": "integer"
+    },
+    "topology_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Topology Hash",
+      "type": "string"
+    },
+    "window_id": {
+      "minLength": 1,
+      "title": "Window Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "session_id",
+    "window_id",
+    "source_mode",
+    "start_ns",
+    "end_ns",
+    "stride_ms",
+    "topology_hash",
+    "calibration_profile_id",
+    "links",
+    "paired_packet_coverage",
+    "feature_version"
+  ],
+  "title": "FeatureWindow",
+  "type": "object"
+}

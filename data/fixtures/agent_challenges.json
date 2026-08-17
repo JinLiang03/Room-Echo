@@ -1,0 +1,16 @@
+[
+  {
+    "category": "confound",
+    "challenge_id": "challenge-0001",
+    "challenger_agent_id": "agent-skeptic-0001",
+    "evidence_refs": [
+      "evidence://sha256:9fa7c4533f9068c6aeb402eb0ca14392f3311b195ceaf6f95a3ba94265cd48d5/quality/packet_coverage"
+    ],
+    "proposed_severity": "material",
+    "resolution_test": "对照无实体运动但有干扰注入的录制,若扰动仍升高则支持干扰假说. ",
+    "schema_version": "agent-challenge.v1",
+    "statement": "干扰注入可能伪造“气动/流通”意象,而非真实环境变化. ",
+    "status": "open",
+    "target_claim_id": "claim-0001"
+  }
+]

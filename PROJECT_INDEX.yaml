@@ -1,0 +1,86 @@
+project:
+  name: wifi-spatial-council
+  version: 0.1.0
+  language: zh-CN
+  purpose: "ESP32 Wi-Fi CSI 三信号感知、多 Agent 争论与 Web 多模态演示"
+
+truth_contract:
+  camera_equivalent: false
+  exact_people_count: false
+  identity_or_pose: false
+  metric_depth: false
+  output_is_calibrated_proxy: true
+  invariant: "final_claim_confidence <= sensor_confidence_cap"
+
+source_modes:
+  - mock
+  - replay
+  - live
+
+signals:
+  - id: motion_intensity
+    shape: continuous_0_1
+    states: [idle, micro_motion, moving, fast_change, unknown]
+  - id: occupancy_density_proxy
+    shape: probability_distribution
+    states: [low, medium, high, unknown]
+  - id: depth_zone_proxy
+    shape: probability_distribution
+    states: [near, mid, far, unknown]
+
+hardware:
+  recommended:
+    tx_count: 1
+    rx_count: 2
+    placement: non_collinear
+    host_transport: usb_serial
+  degraded:
+    tx_count: 1
+    rx_count: 1
+    depth_output: low_confidence_or_unknown
+
+runtime:
+  firmware: esp_idf
+  backend: python_fastapi
+  frontend: react_typescript_vite
+  realtime_transport: websocket
+  agent_sdk: openai_agents_python
+  persistent_formats: [ndjson, parquet, json]
+
+modules:
+  firmware_tx: firmware/csi_tx
+  firmware_rx: firmware/csi_rx
+  collector: services/collector
+  sensing: services/sensing
+  council: services/council
+  api: services/api
+  contracts: packages/contracts
+  web: apps/web
+  tests: tests
+  data: data
+
+phase_order:
+  - prompts/01_BOOTSTRAP.md
+  - prompts/02_FIRMWARE.md
+  - prompts/03_INGEST_AND_REPLAY.md
+  - prompts/04_SIGNAL_PIPELINE.md
+  - prompts/05_CALIBRATION_AND_DATASET.md
+  - prompts/06_THREE_SIGNALS.md
+  - prompts/07_AGENT_COUNCIL.md
+  - prompts/08_WEB_EXPERIENCE.md
+  - prompts/09_MULTIMODAL_OUTPUT.md
+  - prompts/10_END_TO_END.md
+  - prompts/11_HARDWARE_VALIDATION.md
+  - prompts/12_HARDEN_AND_HANDOFF.md
+
+canonical_docs:
+  product: docs/PRODUCT_SPEC.md
+  architecture: docs/ARCHITECTURE.md
+  architecture_alignment: docs/ARCHITECTURE_ALIGNMENT.md
+  assessment: docs/ASSESSMENT_2026-08-08.md
+  hardware: docs/HARDWARE_AND_CALIBRATION.md
+  contracts: docs/DATA_CONTRACTS.md
+  open_source: docs/OPEN_SOURCE_AUDIT.md
+  council: docs/AGENT_COUNCIL.md
+  ux: docs/WEB_UX_SPEC.md
+  acceptance: docs/ACCEPTANCE_TESTS.md

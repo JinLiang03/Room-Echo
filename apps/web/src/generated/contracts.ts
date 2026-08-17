@@ -1,0 +1,79 @@
+// GENERATED FILE — do not edit by hand.
+// Source of truth: packages/contracts/wifi_contracts (Pydantic models).
+// Regenerate with: uv run python scripts/generate_types.py
+// Drift check: make verify-contracts
+
+
+export interface SourceManifest { schema_version?: "wifi-source.v1"; session_id: string; source_mode: "mock" | "replay" | "live"; session_started_at: string; link_ids: Array<string>; firmware_versions?: Record<string, string>; topology_hash: string; replay_ref?: string | null; }
+
+export interface CsiQuality { parse_ok: boolean; sequence_gap: number; timestamp_monotonic: boolean; notes?: Array<string>; }
+
+export interface NormalizedCsiFrame { schema_version?: "1.0.0"; session_id: string; source_mode: "mock" | "replay" | "live"; link_id: string; rx_id: string; tx_id_hash?: string | null; seq: number; device_ts_us: number; host_ts_ns: number; channel: number; bandwidth_mhz: 20 | 40; rssi_dbm: number; noise_floor_dbm: number; rate?: number | null; secondary_channel?: number | null; ltf_mode?: string | null; first_word_invalid?: boolean; csi_iq: Array<number>; quality: CsiQuality; }
+
+export interface LinkFeatures { packet_coverage: number; subcarrier_coverage: number; amplitude_median?: Array<number>; amplitude_mad?: Array<number>; temporal_diff_rms: number; spectral_band_energy?: Record<string, number>; shape_correlation_to_baseline: number; quality_flags?: Array<string>; robust_variance?: number; amplitude_anomaly_ratio?: number; spectral_entropy?: number; valid_carrier_ratio?: number; }
+export interface PairedFeatures { link_disturbance_scores?: Record<string, number>; amplitude_shape_asymmetry?: number; }
+export interface WindowQuality { timestamp_monotonic?: boolean; calibration_match?: boolean; interference_score?: number; ood_flags?: Array<string>; }
+
+export interface FeatureWindow { schema_version?: "1.0.0"; session_id: string; window_id: string; source_mode: "mock" | "replay" | "live"; start_ns: number; end_ns: number; stride_ms: number; topology_hash: string; calibration_profile_id: string; links: Record<string, LinkFeatures>; paired_packet_coverage: number; feature_version: string; quality?: WindowQuality | null; paired?: PairedFeatures | null; }
+
+export interface DepthProbabilities { near: number; mid: number; far: number; unknown: number; }
+export interface DepthZone { probabilities: DepthProbabilities; state: "near" | "mid" | "far" | "unknown"; confidence: number; }
+export interface MotionSignal { value: number; state: "idle" | "micro_motion" | "moving" | "fast_change" | "unknown"; confidence: number; }
+export interface OccupancyDensity { probabilities: OccupancyProbabilities; state: "low" | "medium" | "high" | "unknown"; confidence: number; }
+export interface OccupancyProbabilities { low: number; medium: number; high: number; unknown: number; }
+
+export interface SignalTriplet { schema_version: "1.0.0"; session_id: string; window_id: string; source_mode: "mock" | "replay" | "live"; started_at: string; ended_at: string; motion: MotionSignal; occupancy_density: OccupancyDensity; depth_zone: DepthZone; sensor_confidence_cap: number; evidence_refs: Array<string>; status: "ok" | "degraded" | "insufficient_signal" | "uncalibrated"; }
+
+export interface CalibrationSummary { calibration_profile_id: string; profile_hash: string; calibrated_at: string; room_conditions?: string | null; }
+export interface DepthProbabilities { near: number; mid: number; far: number; unknown: number; }
+export interface DepthZone { probabilities: DepthProbabilities; state: "near" | "mid" | "far" | "unknown"; confidence: number; }
+export interface EvidenceValue { path: string; value: number | number | string | boolean; unit?: string | null; description?: string | null; }
+export interface LinkFeatures { packet_coverage: number; subcarrier_coverage: number; amplitude_median?: Array<number>; amplitude_mad?: Array<number>; temporal_diff_rms: number; spectral_band_energy?: Record<string, number>; shape_correlation_to_baseline: number; quality_flags?: Array<string>; robust_variance?: number; amplitude_anomaly_ratio?: number; spectral_entropy?: number; valid_carrier_ratio?: number; }
+export interface MotionSignal { value: number; state: "idle" | "micro_motion" | "moving" | "fast_change" | "unknown"; confidence: number; }
+export interface OccupancyDensity { probabilities: OccupancyProbabilities; state: "low" | "medium" | "high" | "unknown"; confidence: number; }
+export interface OccupancyProbabilities { low: number; medium: number; high: number; unknown: number; }
+export interface QualitySummary { overall_status: "ok" | "degraded" | "insufficient_signal" | "uncalibrated"; packet_coverage: number; link_health: Record<string, "ok" | "degraded" | "stale" | "error">; quality_flags?: Array<string>; }
+export interface SignalTriplet { schema_version: "1.0.0"; session_id: string; window_id: string; source_mode: "mock" | "replay" | "live"; started_at: string; ended_at: string; motion: MotionSignal; occupancy_density: OccupancyDensity; depth_zone: DepthZone; sensor_confidence_cap: number; evidence_refs: Array<string>; status: "ok" | "degraded" | "insufficient_signal" | "uncalibrated"; }
+export interface SourceManifest { schema_version?: "wifi-source.v1"; session_id: string; source_mode: "mock" | "replay" | "live"; session_started_at: string; link_ids: Array<string>; firmware_versions?: Record<string, string>; topology_hash: string; replay_ref?: string | null; }
+export interface TopologySummary { topology_hash: string; link_ids: Array<string>; degraded_links?: Array<string>; depth_output_allowed: boolean; }
+export interface WindowSummary { window_id: string; start_ns: number; end_ns: number; stride_ms: number; links: Record<string, LinkFeatures>; paired_packet_coverage: number; }
+
+export interface EvidencePacket { schema_version?: "wifi-evidence.v1"; session_id: string; cycle_id: string; sequence: number; captured_at: string; source_manifest: SourceManifest; window_summary: WindowSummary; topology: TopologySummary; calibration: CalibrationSummary; quality: QualitySummary; signals: SignalTriplet; evidence_index: Record<string, EvidenceValue>; raw_ref: string; evidence_hash: string; }
+
+export interface AnalysisStep { step_id: string; phase: "observe" | "retrieve" | "map" | "reason" | "challenge" | "conclude"; title: string; text: string; evidence_refs?: Array<string>; }
+export interface ReadingLayer { signal: "motion" | "occupancy" | "depth"; state: string; metaphor: string; explanation: string; }
+export interface SystematicReading { headline: string; scene_sketch: string; layers: Array<ReadingLayer>; narrative: string; boundary_notes?: Array<string>; multimodal_hints?: Array<string>; }
+
+export interface AgentClaim { schema_version?: "agent-claim.v1"; claim_id: string; cycle_id: string; agent_id: string; agent_version: string; role: string; lens?: "sensor" | "metaphor"; kind: "observation" | "hypothesis" | "alternative" | "limitation"; state: "proposed" | "challenged" | "revised" | "conceded" | "withdrawn" | "accepted"; proposition: string; stance: "supports" | "contradicts" | "neutral"; evidence_refs: Array<string>; counter_evidence_refs?: Array<string>; sources?: Array<string>; process?: string; analysis_steps?: Array<AnalysisStep>; systematic_reading?: SystematicReading | null; assumptions?: Array<string>; alternative_explanations?: Array<string>; falsification_test: string; reasoning_summary: string; }
+
+export interface AgentChallenge { schema_version?: "agent-challenge.v1"; challenge_id: string; target_claim_id: string; challenger_agent_id: string; category: "confound" | "missing_evidence" | "calibration_mismatch" | "causal_overreach" | "contradiction" | "stale_evidence"; proposed_severity: "info" | "material" | "blocking"; statement: string; evidence_refs?: Array<string>; resolution_test: string; status: "open" | "resolved" | "accepted" | "rejected_by_policy"; }
+
+export interface AgreementSummary { participants: number; supporting: number; contradicting: number; unresolved_challenges: number; agreement_ratio: number; }
+export interface Provenance { contracts_version: string; features_version: string; calibration_profile_id: string; agent_versions?: Record<string, string>; models?: Record<string, string>; policy_version: string; generated_at: string; }
+
+export interface CouncilResult { schema_version?: "council-result.v1"; cycle_id: string; evidence_hash: string; status: "supported" | "ambiguous" | "unavailable"; headline: string; summary: string; accepted_claim_ids?: Array<string>; unresolved_challenge_ids?: Array<string>; alternatives?: Array<string>; limitations?: Array<string>; sensor_confidence_cap: number; model_support: number; display_confidence: number; interpretation_agreement: AgreementSummary; visual_parameters?: Record<string, number | string>; audio_parameters?: Record<string, number | string>; provenance: Provenance; }
+
+export interface PolicyRejection { schema_version?: "policy-rejection.v1"; rejection_id: string; cycle_id: string; target_id: string; agent_id: string; role: "architecture" | "biota" | "feng_shui" | "psyche" | "soundscape" | "skeptic" | "fusion"; reason_code: string; detail: string; rejected_at: string; }
+
+export interface CouncilCallRecord { schema_version?: "council-call.v1"; call_id: string; cycle_id: string; role: "architecture" | "biota" | "feng_shui" | "psyche" | "soundscape" | "skeptic" | "fusion"; phase: "propose" | "cross_examine" | "respond" | "synthesize"; model: string; prompt_version: string; evidence_hash: string; status: "ok" | "retry" | "timeout" | "error" | "offline" | "cache_hit"; latency_ms: number; attempts: number; input_tokens?: number; output_tokens?: number; total_tokens?: number; trace_id?: string | null; error?: string | null; }
+
+export interface ProviderHealth { schema_version?: "provider-health.v1"; provider: "mock" | "openai"; status: "ok" | "degraded" | "offline"; model?: string | null; detail: string; checked_at: string; }
+
+export interface CouncilUsageSummary { schema_version?: "council-usage.v1"; cycles_completed: number; total_calls: number; total_attempts: number; calls_by_role?: Record<string, number>; calls_by_status?: Record<string, number>; total_input_tokens: number; total_output_tokens: number; p50_latency_ms: number; }
+
+export interface AgentChallenge { schema_version?: "agent-challenge.v1"; challenge_id: string; target_claim_id: string; challenger_agent_id: string; category: "confound" | "missing_evidence" | "calibration_mismatch" | "causal_overreach" | "contradiction" | "stale_evidence"; proposed_severity: "info" | "material" | "blocking"; statement: string; evidence_refs?: Array<string>; resolution_test: string; status: "open" | "resolved" | "accepted" | "rejected_by_policy"; }
+export interface AgentClaim { schema_version?: "agent-claim.v1"; claim_id: string; cycle_id: string; agent_id: string; agent_version: string; role: string; lens?: "sensor" | "metaphor"; kind: "observation" | "hypothesis" | "alternative" | "limitation"; state: "proposed" | "challenged" | "revised" | "conceded" | "withdrawn" | "accepted"; proposition: string; stance: "supports" | "contradicts" | "neutral"; evidence_refs: Array<string>; counter_evidence_refs?: Array<string>; sources?: Array<string>; process?: string; analysis_steps?: Array<AnalysisStep>; systematic_reading?: SystematicReading | null; assumptions?: Array<string>; alternative_explanations?: Array<string>; falsification_test: string; reasoning_summary: string; }
+export interface AgreementSummary { participants: number; supporting: number; contradicting: number; unresolved_challenges: number; agreement_ratio: number; }
+export interface AnalysisStep { step_id: string; phase: "observe" | "retrieve" | "map" | "reason" | "challenge" | "conclude"; title: string; text: string; evidence_refs?: Array<string>; }
+export interface CouncilCallRecord { schema_version?: "council-call.v1"; call_id: string; cycle_id: string; role: "architecture" | "biota" | "feng_shui" | "psyche" | "soundscape" | "skeptic" | "fusion"; phase: "propose" | "cross_examine" | "respond" | "synthesize"; model: string; prompt_version: string; evidence_hash: string; status: "ok" | "retry" | "timeout" | "error" | "offline" | "cache_hit"; latency_ms: number; attempts: number; input_tokens?: number; output_tokens?: number; total_tokens?: number; trace_id?: string | null; error?: string | null; }
+export interface CouncilResult { schema_version?: "council-result.v1"; cycle_id: string; evidence_hash: string; status: "supported" | "ambiguous" | "unavailable"; headline: string; summary: string; accepted_claim_ids?: Array<string>; unresolved_challenge_ids?: Array<string>; alternatives?: Array<string>; limitations?: Array<string>; sensor_confidence_cap: number; model_support: number; display_confidence: number; interpretation_agreement: AgreementSummary; visual_parameters?: Record<string, number | string>; audio_parameters?: Record<string, number | string>; provenance: Provenance; }
+export interface PolicyRejection { schema_version?: "policy-rejection.v1"; rejection_id: string; cycle_id: string; target_id: string; agent_id: string; role: "architecture" | "biota" | "feng_shui" | "psyche" | "soundscape" | "skeptic" | "fusion"; reason_code: string; detail: string; rejected_at: string; }
+export interface Provenance { contracts_version: string; features_version: string; calibration_profile_id: string; agent_versions?: Record<string, string>; models?: Record<string, string>; policy_version: string; generated_at: string; }
+export interface ReadingLayer { signal: "motion" | "occupancy" | "depth"; state: string; metaphor: string; explanation: string; }
+export interface SystematicReading { headline: string; scene_sketch: string; layers: Array<ReadingLayer>; narrative: string; boundary_notes?: Array<string>; multimodal_hints?: Array<string>; }
+
+export interface CouncilCycleDetail { schema_version?: "council-cycle.v1"; cycle_id: string; evidence_hash: string; status: "supported" | "ambiguous" | "unavailable"; phase: "seal" | "gate" | "propose" | "cross_examine" | "respond" | "policy" | "synthesize" | "commit"; started_at: string; finished_at: string; deadline_s: number; claims?: Array<AgentClaim>; challenges?: Array<AgentChallenge>; rejections?: Array<PolicyRejection>; calls?: Array<CouncilCallRecord>; result?: CouncilResult | null; }
+
+export interface WebSocketEnvelope { schema_version?: "ws-event.v1"; session_id: string; sequence: number; emitted_at: string; event_type: "session.status" | "source.health" | "signal.frame" | "quality.update" | "cycle.started" | "agent.claim" | "agent.challenge" | "agent.response" | "policy.rejection" | "synthesis.result" | "render.update" | "alert" | "heartbeat"; payload: Record<string, unknown>; }
+
+export interface SourceHealth { schema_version?: "source-health.v1"; session_id: string; source_mode: "mock" | "replay" | "live"; status: "ok" | "degraded" | "stale" | "error"; active_links?: Array<string>; degraded_links?: Array<string>; dropped_links?: Array<string>; counters?: Record<string, number>; epoch?: number; updated_at: string; }
