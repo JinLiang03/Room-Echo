@@ -57,7 +57,7 @@ wsc-calibration = "wifi_sensing.calibration_cli:main"
 
 [dependency-groups]
 dev = [
-    "pytest>=8.3.0,<9",
+    "pytest>=9.0.3,<10",
     "pytest-cov>=6.0.0,<7",
     "hypothesis>=6.124.0,<7",
     "ruff>=0.9.0,<1",
